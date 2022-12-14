@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ProgramImagePlaceHolder from '../../assets/images/placeholders/program-placeholder.jpg';
 
-export default function Program() {
+export default function Program({ program }) {
 	return (
 		<Card sx={{ maxWidth: 345 }}>
 			<CardMedia
@@ -18,11 +18,10 @@ export default function Program() {
 			/>
 			<CardContent>
 				<Typography gutterBottom variant='h5' component='div'>
-					Program Name
+					{program.name}
 				</Typography>
 				<Typography variant='body2' color='text.secondary'>
-					Lizards are a widespread group of squamate reptiles, with over 6,000
-					species, ranging across all continents except Antarctica
+					{program.description}
 				</Typography>
 			</CardContent>
 			<CardActions>
