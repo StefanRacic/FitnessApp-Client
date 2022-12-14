@@ -4,7 +4,6 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import Programs from './pages/Programs/Programs';
-import WorkoutLogs from './pages/WorkoutLogs/WorkoutLogs';
 import Exercises from './pages/Exercises/Exercises';
 
 function App() {

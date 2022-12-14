@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mui/material';
+import { Container } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
 import Program from './Program';

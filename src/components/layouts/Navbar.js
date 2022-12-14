@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import FitbitIcon from '@mui/icons-material/Fitbit';
+import { Link } from 'react-router-dom';
 
 const pages = ['Programs', 'Exercises'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -43,8 +44,8 @@ function Navbar() {
 					<Typography
 						variant='h6'
 						noWrap
-						component='a'
-						href='/'
+						component={Link}
+						to='/'
 						sx={{
 							mr: 2,
 							display: { xs: 'none', md: 'flex' },
@@ -119,6 +120,8 @@ function Navbar() {
 								key={page}
 								onClick={handleCloseNavMenu}
 								sx={{ my: 2, color: 'white', display: 'block' }}
+								component={Link}
+								to={page}
 							>
 								{page}
 							</Button>
