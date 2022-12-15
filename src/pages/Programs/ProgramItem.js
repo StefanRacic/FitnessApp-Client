@@ -6,8 +6,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ProgramImagePlaceHolder from '../../assets/images/placeholders/program-placeholder.jpg';
+import { Link } from 'react-router-dom';
 
-export default function Program({ program }) {
+export default function ProgramItem() {
 	return (
 		<Card sx={{ maxWidth: 345 }}>
 			<CardMedia
@@ -18,15 +19,20 @@ export default function Program({ program }) {
 			/>
 			<CardContent>
 				<Typography gutterBottom variant='h5' component='div'>
-					{program.name}
+					Program Name
 				</Typography>
 				<Typography variant='body2' color='text.secondary'>
-					{program.description}
+					Magna duis voluptate tempor excepteur id mollit cupidatat ex sunt ut.
+					Sint enim aute sit non minim elit. Sint duis proident cupidatat ea
+					occaecat id adipisicing nostrud nisi excepteur reprehenderit duis
+					consectetur ullamco.
 				</Typography>
 			</CardContent>
 			<CardActions>
 				<Button size='small'>Start</Button>
-				<Button size='small'>Learn More</Button>
+				<Button size='small' component={Link} to='/program'>
+					Learn More
+				</Button>
 			</CardActions>
 		</Card>
 	);

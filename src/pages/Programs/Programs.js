@@ -1,30 +1,24 @@
 import { Container } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Stack } from '@mui/system';
-import React, { useEffect, useState } from 'react';
-import { getPrograms } from '../../services';
-import Program from './Program';
+import React from 'react';
+import ProgramItem from './ProgramItem';
 
 const Programs = () => {
-	const [programs, setPrograms] = useState([]);
-
-	useEffect(() => {
-		getPrograms().then((res) => setPrograms(res.data));
-	}, []);
-
 	return (
 		<React.Fragment>
 			<Container sx={{ p: 10 }}>
-				<Stack direction='row' spacing={3} justifyContent='center'>
-					{programs.length > 0 ? (
-						programs.map((program) => {
-							return <Program key={program.id} program={program} />;
-						})
-					) : (
-						<div>
-							<h2>No programs...</h2>
-						</div>
-					)}
-				</Stack>
+				<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
+					<Grid>
+						<ProgramItem />
+					</Grid>
+					<Grid>
+						<ProgramItem />
+					</Grid>
+					<Grid>
+						<ProgramItem />
+					</Grid>
+				</Grid>
 			</Container>
 		</React.Fragment>
 	);

@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import Programs from './pages/Programs/Programs';
 import Exercises from './pages/Exercises/Exercises';
+import Program from './pages/Program/Program';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 						<Route index element={<Dashboard />} />
 						<Route path='/programs' element={<Programs />} />
 						<Route path='/exercises' element={<Exercises />} />
+						<Route path='/program' element={<Program />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

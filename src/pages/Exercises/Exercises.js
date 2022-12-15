@@ -1,4 +1,4 @@
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
+import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { Container } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { getExercies } from '../../services';
@@ -12,21 +12,20 @@ const Exercises = () => {
 	return (
 		<React.Fragment>
 			<Container sx={{ p: 10 }}>
-				<Grid2 container spacing={1} justifyContent='center'>
-					{exercises.length > 0 ? (
-						exercises.map((exercise) => {
-							return (
-								<Grid2>
-									<Exercise key={exercise.id} exercise={exercise} />
-								</Grid2>
-							);
-						})
-					) : (
-						<div>
-							<h2>No exercises...</h2>
-						</div>
-					)}
-				</Grid2>
+				<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
+					<Grid sm={4}>
+						<Exercise />
+					</Grid>
+					<Grid sm={4}>
+						<Exercise />
+					</Grid>
+					<Grid sm={4}>
+						<Exercise />
+					</Grid>
+					<Grid sm={4}>
+						<Exercise />
+					</Grid>
+				</Grid>
 			</Container>
 		</React.Fragment>
 	);
