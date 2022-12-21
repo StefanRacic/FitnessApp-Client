@@ -6,6 +6,7 @@ import Layout from './components/layouts/Layout';
 import Programs from './pages/Programs/Programs';
 import Exercises from './pages/Exercises/Exercises';
 import Program from './pages/Program/Program';
+import Workout from './pages/Workout/Workout';
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 						<Route path='/programs' element={<Programs />} />
 						<Route path='/exercises' element={<Exercises />} />
 						<Route path='/program' element={<Program />} />
+						<Route path='/workout' element={<Workout />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
