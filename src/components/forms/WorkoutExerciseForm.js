@@ -50,7 +50,7 @@ export default function WorkoutForm() {
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={handleClose}>Create Exercise</Button>
+					<Button onClick={handleClose}>Create Workout Exercise</Button>
 				</DialogActions>
 			</Dialog>
 		</div>
