@@ -3,6 +3,7 @@ import { Container } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import { getExercies } from '../../services';
 import Exercise from './Exercise';
+import ExerciseForm from '../../components/forms/ExerciseForm';
 
 const Exercises = () => {
 	const [exercises, setExercises] = useState([]);
@@ -12,7 +13,12 @@ const Exercises = () => {
 	return (
 		<React.Fragment>
 			<Container sx={{ p: 10 }}>
-				<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
+				<Grid
+					container
+					spacing={{ xs: 3, sm: 3 }}
+					paddingBottom='5%'
+					justifyContent='center'
+				>
 					<Grid sm={4}>
 						<Exercise />
 					</Grid>
@@ -26,6 +32,7 @@ const Exercises = () => {
 						<Exercise />
 					</Grid>
 				</Grid>
+				<ExerciseForm />
 			</Container>
 		</React.Fragment>
 	);

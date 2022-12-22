@@ -4,6 +4,7 @@ import { Container, padding } from '@mui/system';
 import React from 'react';
 import styles from './program.module.css';
 import Workouts from './Workouts';
+import WorkoutForm from '../../components/forms/WorkoutForm';
 
 const Program = () => {
 	return (
@@ -15,14 +16,12 @@ const Program = () => {
 					Lorem anim reprehenderit mollit veniam laboris duis ea ut. Cillum
 					velit proident id commodo elit sint officia mollit ea voluptate. Et
 					est excepteur velit duis esse elit tempor labore. Nisi nulla ea sit
-					Lorem elit cupidatat duis duis elit exercitation. Nisi nulla ea sit
-					Lorem elit cupidatat duis duis elit exercitation. Nisi nulla ea sit
 					Lorem elit cupidatat duis duis elit exercitation.
 				</Typography>
 				<Typography variant='h4'>Workouts</Typography>
 				<Workouts />
 				<div className={styles.btnWrapper}>
-					<Button variant='contained'>Add Workout</Button>
+					<WorkoutForm />
 				</div>
 			</Container>
 		</div>

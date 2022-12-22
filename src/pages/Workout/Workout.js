@@ -5,6 +5,7 @@ import React from 'react';
 import styles from '../Program/program.module.css';
 import Workouts from '../Program/Workouts';
 import WorkoutExercises from './WorkoutExercises';
+import WorkoutExerciseForm from '../../components/forms/WorkoutExerciseForm';
 
 const Workout = () => {
 	return (
@@ -19,7 +20,7 @@ const Workout = () => {
 				<Typography variant='h4'>Workout Exercises</Typography>
 				<WorkoutExercises />
 				<div className={styles.btnWrapper}>
-					<Button variant='contained'>Add Workout Exercise</Button>
+					<WorkoutExerciseForm />
 				</div>
 			</Container>
 		</div>
