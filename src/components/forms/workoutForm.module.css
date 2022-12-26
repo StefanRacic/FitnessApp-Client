@@ -6,7 +6,13 @@
 }
 
 .btnWrapper {
-	display: flex;
-	justify-content: center;
-	padding: 10px 0;
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+}
+
+.btn {
+	margin: 20px;
+	background-color: #1976d2 !important;
+	color: white !important;
 }

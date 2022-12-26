@@ -5,26 +5,31 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import ItemOptions from '../../components/options/ItemOptions';
 
-export default function WorkoutItem() {
+export default function WorkoutItem({ workout }) {
 	return (
 		<Card sx={{ minWidth: 275 }}>
 			<CardContent>
 				<Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
-					Workout ID
+					Workout ID: {workout.id}
 				</Typography>
 				<Typography variant='h5' component='div'>
-					Workout Name
+					{workout.name}
 				</Typography>
-				<Typography variant='body2'>
-					Voluptate fugiat esse do ipsum deserunt laborum id excepteur sunt
-					aliquip magna aliqua.
-				</Typography>
+				<Typography variant='body2'>{workout.description}</Typography>
 			</CardContent>
-			<CardActions>
-				<Button size='small' component={Link} to='/workout'>
+			<CardActions style={{ justifyContent: 'space-around' }}>
+				<Button
+					size='small'
+					component={Link}
+					to={{
+						pathname: `/workout/${workout.id}`,
+					}}
+				>
 					Open
 				</Button>
+				<ItemOptions />
 			</CardActions>
 		</Card>
 	);

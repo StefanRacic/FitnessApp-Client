@@ -7,9 +7,29 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import styles from './workoutForm.module.css';
+import { IconButton } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { useState } from 'react';
+import { createProgram } from '../../actions/programActions';
 
-const ProgramsForm = () => {
-	const [open, setOpen] = React.useState(false);
+const ProgramsForm = ({ runGetPrograms }) => {
+	const [name, setName] = useState('');
+	const [description, setDescription] = useState('');
+	const [open, setOpen] = useState(false);
+
+	const onSubmit = async () => {
+		const newProgram = {
+			name,
+			description,
+		};
+		const res = await createProgram(newProgram);
+
+		setName('');
+		setDescription('');
+
+		runGetPrograms();
+		setOpen(false);
+	};
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -22,9 +42,14 @@ const ProgramsForm = () => {
 	return (
 		<div>
 			<div className={styles.btnWrapper}>
-				<Button variant='contained' onClick={handleClickOpen}>
-					Create Program
-				</Button>
+				<IconButton
+					variant='outlined'
+					aria-label='add new program'
+					onClick={handleClickOpen}
+					className={styles.btn}
+				>
+					<AddIcon />
+				</IconButton>
 			</div>
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
 				<DialogTitle>Create new program</DialogTitle>
@@ -33,24 +58,30 @@ const ProgramsForm = () => {
 					<TextField
 						autoFocus
 						margin='dense'
+						name='name'
+						value={name}
 						id='name'
 						label='Program Name'
 						type='text'
 						fullWidth
 						variant='standard'
+						onChange={(e) => setName(e.target.value)}
 					/>
 					<TextField
+						name='description'
+						value={description}
 						margin='dense'
 						id='description'
 						label='Description'
 						type='text'
 						fullWidth
 						variant='standard'
+						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={handleClose}>Create Program</Button>
+					<Button onClick={onSubmit}>Create Program</Button>
 				</DialogActions>
 			</Dialog>
 		</div>

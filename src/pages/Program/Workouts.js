@@ -3,23 +3,23 @@ import { Container } from '@mui/system';
 import React from 'react';
 import WorkoutItem from './WorkoutItem';
 import styles from './workouts.module.css';
+import { Typography } from '@mui/material';
 
-const Workouts = () => {
+const Workouts = ({ workouts }) => {
 	return (
 		<div className={styles.wrapper}>
 			<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
-				<Grid sm={3}>
-					<WorkoutItem />
-				</Grid>
-				<Grid sm={3}>
-					<WorkoutItem />
-				</Grid>
-				<Grid sm={3}>
-					<WorkoutItem />
-				</Grid>
-				<Grid sm={3}>
-					<WorkoutItem />
-				</Grid>
+				{workouts.length ? (
+					workouts.map((workout) => {
+						return (
+							<Grid sm={3}>
+								<WorkoutItem workout={workout} />
+							</Grid>
+						);
+					})
+				) : (
+					<Typography variant='body1'>No workouts...</Typography>
+				)}
 			</Grid>
 		</div>
 	);

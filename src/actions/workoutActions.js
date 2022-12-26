@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-// Get Programs from server
-export const getPrograms = async () => {
+export const getWorkout = async (id) => {
 	try {
 		const res = await axios.get(
-			'https://localhost:7097/Programs/GetAllPrograms'
+			`https://localhost:7097/Workouts/GetWorkout?id=${id}`
 		);
 		return res.data;
 	} catch (err) {
@@ -12,10 +11,10 @@ export const getPrograms = async () => {
 	}
 };
 
-export const getProgram = async (id) => {
+export const getWorkoutsByProgramId = async (id) => {
 	try {
 		const res = await axios.get(
-			`https://localhost:7097/Programs/GetProgram?id=${id}`
+			`https://localhost:7097/Workouts/GetWorkoutsByProgramId?programId=${id}`
 		);
 		return res.data;
 	} catch (err) {
@@ -23,11 +22,11 @@ export const getProgram = async (id) => {
 	}
 };
 
-export const createProgram = async (program) => {
+export const createWorkout = async (workout) => {
 	try {
 		const res = await axios.post(
-			`https://localhost:7097/Programs/CreateProgram`,
-			program
+			`https://localhost:7097/Workouts/CreateWorkout`,
+			workout
 		);
 		return res.data;
 	} catch (err) {

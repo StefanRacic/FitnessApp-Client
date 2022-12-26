@@ -3,22 +3,17 @@ import React from 'react';
 import WorkoutExerciseItem from './WorkoutExerciseItem';
 import styles from '../Program/workouts.module.css';
 
-const WorkoutExercises = () => {
+const WorkoutExercises = ({ workoutExercises }) => {
 	return (
 		<div className={styles.wrapper}>
 			<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
-				<Grid sm={3}>
-					<WorkoutExerciseItem />
-				</Grid>
-				<Grid sm={3}>
-					<WorkoutExerciseItem />
-				</Grid>
-				<Grid sm={3}>
-					<WorkoutExerciseItem />
-				</Grid>
-				<Grid sm={3}>
-					<WorkoutExerciseItem />
-				</Grid>
+				{workoutExercises.map((workoutExercise) => {
+					return (
+						<Grid sm={3} key={workoutExercise.id}>
+							<WorkoutExerciseItem workoutExercise={workoutExercise} />
+						</Grid>
+					);
+				})}
 			</Grid>
 		</div>
 	);

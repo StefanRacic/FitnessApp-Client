@@ -8,7 +8,7 @@ const options = ['Edit', 'Delete'];
 
 const ITEM_HEIGHT = 48;
 
-export default function WorkoutExerciseOptions() {
+export default function ItemOptions() {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
 	const handleClick = (event) => {

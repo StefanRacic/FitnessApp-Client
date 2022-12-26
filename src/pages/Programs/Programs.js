@@ -7,11 +7,11 @@ import { getPrograms } from '../../actions/programActions';
 
 const Programs = () => {
 	const [programs, setPrograms] = useState([]);
+	const runGetPrograms = async () => {
+		const res = await getPrograms();
+		setPrograms(res);
+	};
 	useEffect(() => {
-		const runGetPrograms = async () => {
-			const res = await getPrograms();
-			setPrograms(res);
-		};
 		runGetPrograms();
 	}, []);
 	return (
@@ -19,15 +19,11 @@ const Programs = () => {
 			<Container sx={{ p: 10 }}>
 				<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
 					{programs.map((program) => {
-						return (
-							<Grid key={program.id}>
-								<ProgramItem />
-							</Grid>
-						);
+						return <ProgramItem key={program.id} program={program} />;
 					})}
 				</Grid>
-				<ProgramsForm />
 			</Container>
+			<ProgramsForm runGetPrograms={runGetPrograms} />
 		</React.Fragment>
 	);
 };

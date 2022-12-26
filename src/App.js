@@ -17,8 +17,8 @@ function App() {
 						<Route index element={<Dashboard />} />
 						<Route path='/programs' element={<Programs />} />
 						<Route path='/exercises' element={<Exercises />} />
-						<Route path='/program' element={<Program />} />
-						<Route path='/workout' element={<Workout />} />
+						<Route path='/program/:id' element={<Program />} />
+						<Route path='/workout/:id' element={<Workout />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>
