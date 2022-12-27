@@ -6,13 +6,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import styles from './workoutForm.module.css';
-import ExerciseList from './ExerciseList';
-import { IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
 import { createWorkout } from '../../actions/workoutActions';
 import { useParams } from 'react-router-dom';
+import AddButton from './AddButton';
 
 export default function WorkoutForm({ runGetWorkoutsByProgramId }) {
 	const params = useParams();
@@ -47,16 +44,7 @@ export default function WorkoutForm({ runGetWorkoutsByProgramId }) {
 
 	return (
 		<div>
-			<div className={styles.btnWrapper}>
-				<IconButton
-					variant='outlined'
-					aria-label='add new program'
-					onClick={handleClickOpen}
-					className={styles.btn}
-				>
-					<AddIcon />
-				</IconButton>
-			</div>
+			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
 				<DialogTitle>Create new workout</DialogTitle>
 				<DialogContent>

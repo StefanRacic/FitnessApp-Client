@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,11 +6,21 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import styles from './workoutForm.module.css';
-import ExerciseList from './ExerciseList';
+import AddButton from './AddButton';
+import { getExercises } from '../../actions/exerciseActions';
+import ExercisesSelect from './ExercisesSelect';
 
 export default function WorkoutForm() {
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
+	const [exercises, setExercises] = useState([]);
+	const [exerciseId, setExerciseId] = useState(null);
+
+	const runGetExercises = async () => {
+		const res = await getExercises();
+		if (res) {
+			setExercises(res);
+		}
+	};
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -20,25 +30,21 @@ export default function WorkoutForm() {
 		setOpen(false);
 	};
 
+	useEffect(() => {
+		runGetExercises();
+	}, []);
+
 	return (
 		<div>
-			<Button variant='contained' onClick={handleClickOpen}>
-				Create Exercise
-			</Button>
+			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
 				<DialogTitle>Create Exercise</DialogTitle>
 				<DialogContent>
 					<DialogContentText>Lorem ipsum dolar sit.</DialogContentText>
-					<TextField
-						autoFocus
-						margin='dense'
-						id='exerciseName'
-						label='Search Exercise'
-						type='text'
-						fullWidth
-						variant='standard'
+					<ExercisesSelect
+						exercises={exercises}
+						setExerciseId={setExerciseId}
 					/>
-					{/* <ExerciseList /> */}
 					<TextField
 						margin='dense'
 						id='sets'

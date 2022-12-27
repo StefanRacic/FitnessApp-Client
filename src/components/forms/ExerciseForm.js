@@ -6,8 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import styles from './workoutForm.module.css';
-import ExerciseList from './ExerciseList';
+import AddButton from './AddButton';
 
 export default function ExerciseForm() {
 	const [open, setOpen] = React.useState(false);
@@ -21,12 +20,8 @@ export default function ExerciseForm() {
 	};
 
 	return (
-		<div>
-			<div className={styles.btnWrapper}>
-				<Button variant='contained' onClick={handleClickOpen}>
-					Create Exercise
-				</Button>
-			</div>
+		<React.Fragment>
+			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
 				<DialogTitle>Create new exercise</DialogTitle>
 				<DialogContent>
@@ -54,6 +49,6 @@ export default function ExerciseForm() {
 					<Button onClick={handleClose}>Create Exercise</Button>
 				</DialogActions>
 			</Dialog>
-		</div>
+		</React.Fragment>
 	);
 }

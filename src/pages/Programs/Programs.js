@@ -1,28 +1,27 @@
-import { Container } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import React, { useEffect, useState } from 'react';
-import ProgramItem from './ProgramItem';
 import ProgramsForm from '../../components/forms/ProgramsForm';
 import { getPrograms } from '../../actions/programActions';
+import ProgramsList from './ProgramsList';
 
 const Programs = () => {
 	const [programs, setPrograms] = useState([]);
+	const [loading, setLoading] = useState(true);
+
 	const runGetPrograms = async () => {
 		const res = await getPrograms();
-		setPrograms(res);
+		if (res) {
+			setPrograms(res);
+			setLoading(false);
+		}
 	};
+
 	useEffect(() => {
 		runGetPrograms();
 	}, []);
+
 	return (
 		<React.Fragment>
-			<Container sx={{ p: 10 }}>
-				<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
-					{programs.map((program) => {
-						return <ProgramItem key={program.id} program={program} />;
-					})}
-				</Grid>
-			</Container>
+			<ProgramsList programs={programs} loading={loading} />
 			<ProgramsForm runGetPrograms={runGetPrograms} />
 		</React.Fragment>
 	);

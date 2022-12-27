@@ -6,11 +6,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import styles from './workoutForm.module.css';
-import { IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
 import { createProgram } from '../../actions/programActions';
+import AddButton from './AddButton';
 
 const ProgramsForm = ({ runGetPrograms }) => {
 	const [name, setName] = useState('');
@@ -40,17 +38,8 @@ const ProgramsForm = ({ runGetPrograms }) => {
 	};
 
 	return (
-		<div>
-			<div className={styles.btnWrapper}>
-				<IconButton
-					variant='outlined'
-					aria-label='add new program'
-					onClick={handleClickOpen}
-					className={styles.btn}
-				>
-					<AddIcon />
-				</IconButton>
-			</div>
+		<React.Fragment>
+			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
 				<DialogTitle>Create new program</DialogTitle>
 				<DialogContent>
@@ -84,7 +73,7 @@ const ProgramsForm = ({ runGetPrograms }) => {
 					<Button onClick={onSubmit}>Create Program</Button>
 				</DialogActions>
 			</Dialog>
-		</div>
+		</React.Fragment>
 	);
 };
 

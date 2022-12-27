@@ -9,10 +9,15 @@ import ProgramImagePlaceHolder from '../../assets/images/placeholders/program-pl
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import ItemOptions from '../../components/options/ItemOptions';
+import { Skeleton } from '@mui/material';
 
-export default function ProgramItem({ program }) {
+const ProgramsListItem = ({ program, loading }) => {
 	const { id, name, description } = program;
-	return (
+	return loading ? (
+		<Grid>
+			<Skeleton width={345} height={500} />
+		</Grid>
+	) : (
 		<Grid>
 			<Card sx={{ width: 345 }}>
 				<CardMedia
@@ -43,4 +48,6 @@ export default function ProgramItem({ program }) {
 			</Card>
 		</Grid>
 	);
-}
+};
+
+export default ProgramsListItem;

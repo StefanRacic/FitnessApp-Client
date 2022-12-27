@@ -1,12 +1,15 @@
 import { Typography } from '@mui/material';
 import { Container } from '@mui/system';
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import styles from '../Program/program.module.css';
 import WorkoutExercises from './WorkoutExercises';
 import WorkoutExerciseForm from '../../components/forms/WorkoutExerciseForm';
 import { getWorkout } from '../../actions/workoutActions';
 import { useParams } from 'react-router-dom';
 import { getWorkoutExercisesByWorkoutId } from '../../actions/workoutExerciseActions';
+import BannerImage from '../../components/common/BannerImage';
+import Title from '../../components/common/Title';
+import Description from '../../components/common/Description';
 
 const Workout = () => {
 	const params = useParams();
@@ -26,18 +29,16 @@ const Workout = () => {
 		runGetWorkoutExercises();
 	}, []);
 	return (
-		<div className={styles.wrapper}>
-			<div className={styles.bannerImage}></div>
+		<Fragment>
+			<BannerImage />
 			<Container>
-				<Typography variant='h4'>{workout.name}</Typography>
-				<Typography variant='body1'>{workout.description}</Typography>
-				<Typography variant='h4'>Workout Exercises</Typography>
+				<Title title={workout.name} />
+				<Description description={workout.description} />
+				<Title title='Workout Exercises' />
 				<WorkoutExercises workoutExercises={workoutExercises} />
-				<div className={styles.btnWrapper}>
-					<WorkoutExerciseForm />
-				</div>
+				<WorkoutExerciseForm />
 			</Container>
-		</div>
+		</Fragment>
 	);
 };
 
