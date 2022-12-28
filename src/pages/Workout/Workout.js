@@ -15,16 +15,15 @@ const Workout = () => {
 	const params = useParams();
 	const [workout, setWorkout] = useState({});
 	const [workoutExercises, setWorkoutExercises] = useState([]);
-
+	const runGetWorkout = async () => {
+		const res = await getWorkout(params.id);
+		setWorkout(res);
+	};
+	const runGetWorkoutExercises = async () => {
+		const res = await getWorkoutExercisesByWorkoutId(params.id);
+		setWorkoutExercises(res);
+	};
 	useEffect(() => {
-		const runGetWorkout = async () => {
-			const res = await getWorkout(params.id);
-			setWorkout(res);
-		};
-		const runGetWorkoutExercises = async () => {
-			const res = await getWorkoutExercisesByWorkoutId(params.id);
-			setWorkoutExercises(res);
-		};
 		runGetWorkout();
 		runGetWorkoutExercises();
 	}, []);
@@ -36,7 +35,7 @@ const Workout = () => {
 				<Description description={workout.description} />
 				<Title title='Workout Exercises' />
 				<WorkoutExercises workoutExercises={workoutExercises} />
-				<WorkoutExerciseForm />
+				<WorkoutExerciseForm runGetWorkoutExercises={runGetWorkoutExercises} />
 			</Container>
 		</Fragment>
 	);

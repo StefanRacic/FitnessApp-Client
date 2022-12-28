@@ -9,11 +9,15 @@ import DialogTitle from '@mui/material/DialogTitle';
 import AddButton from './AddButton';
 import { getExercises } from '../../actions/exerciseActions';
 import ExercisesSelect from './ExercisesSelect';
+import { createWorkoutExercise } from '../../actions/workoutExerciseActions';
+import { useParams } from 'react-router-dom';
 
-export default function WorkoutForm() {
+export default function WorkoutForm({ runGetWorkoutExercises }) {
 	const [open, setOpen] = useState(false);
 	const [exercises, setExercises] = useState([]);
-	const [exerciseId, setExerciseId] = useState(null);
+	const [exerciseId, setExerciseId] = useState('');
+	const [sets, setSets] = useState('');
+	const params = useParams();
 
 	const runGetExercises = async () => {
 		const res = await getExercises();
@@ -27,6 +31,22 @@ export default function WorkoutForm() {
 	};
 
 	const handleClose = () => {
+		setOpen(false);
+	};
+
+	const onSubmit = async () => {
+		const newWorkoutExercise = {
+			exerciseId,
+			sets,
+			workoutId: params.id,
+		};
+
+		const res = await createWorkoutExercise(newWorkoutExercise);
+
+		setExerciseId('');
+		setSets('');
+
+		runGetWorkoutExercises();
 		setOpen(false);
 	};
 
@@ -48,15 +68,20 @@ export default function WorkoutForm() {
 					<TextField
 						margin='dense'
 						id='sets'
+						name='sets'
+						value={sets}
 						label='Sets'
 						type='number'
 						fullWidth
 						variant='standard'
+						onChange={(e) => {
+							setSets(e.target.value);
+						}}
 					/>
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={handleClose}>Create Workout Exercise</Button>
+					<Button onClick={onSubmit}>Create Workout Exercise</Button>
 				</DialogActions>
 			</Dialog>
 		</div>

@@ -10,13 +10,9 @@ const ExercisesSelect = ({ exercises, setExerciseId }) => {
 					id: exercise.id,
 					label: exercise.name,
 				}))}
+				onChange={(e, value) => setExerciseId(value.id)}
 				renderInput={(params) => (
-					<TextField
-						{...params}
-						label='Pick Exercise'
-						fullWidth={true}
-						onChange={(e) => setExerciseId(e.target.value)}
-					/>
+					<TextField {...params} label='Pick Exercise' fullWidth={true} />
 				)}
 			/>
 		</Stack>
