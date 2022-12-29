@@ -11,7 +11,7 @@ import { createWorkout } from '../../actions/workoutActions';
 import { useParams } from 'react-router-dom';
 import AddButton from './AddButton';
 
-export default function WorkoutForm({ runGetWorkoutsByProgramId }) {
+export default function AddWorkout({ runGetWorkoutsByProgramId }) {
 	const params = useParams();
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');

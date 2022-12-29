@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ProgramsForm from '../../components/forms/ProgramsForm';
+import AddProgram from '../../components/forms/AddProgram';
 import { getPrograms } from '../../actions/programActions';
 import ProgramsList from './ProgramsList';
 
@@ -22,7 +22,7 @@ const Programs = () => {
 	return (
 		<React.Fragment>
 			<ProgramsList programs={programs} loading={loading} />
-			<ProgramsForm runGetPrograms={runGetPrograms} />
+			<AddProgram runGetPrograms={runGetPrograms} />
 		</React.Fragment>
 	);
 };

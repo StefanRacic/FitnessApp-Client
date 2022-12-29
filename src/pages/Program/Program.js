@@ -1,7 +1,7 @@
 import { Container } from '@mui/system';
 import React, { Fragment, useEffect, useState } from 'react';
 import Workouts from './Workouts';
-import WorkoutForm from '../../components/forms/WorkoutForm';
+import AddWorkout from '../../components/forms/AddWorkout';
 import { useParams } from 'react-router-dom';
 import { getProgram } from '../../actions/programActions';
 import { getWorkoutsByProgramId } from '../../actions/workoutActions';
@@ -38,7 +38,7 @@ const Program = () => {
 				<Description description={program.description} />
 				<Title title='Workouts' />
 				<Workouts workouts={workouts} />
-				<WorkoutForm runGetWorkoutsByProgramId={runGetWorkoutsByProgramId} />
+				<AddWorkout runGetWorkoutsByProgramId={runGetWorkoutsByProgramId} />
 			</Container>
 		</Fragment>
 	);

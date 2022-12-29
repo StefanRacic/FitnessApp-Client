@@ -12,7 +12,7 @@ import ExercisesSelect from './ExercisesSelect';
 import { createWorkoutExercise } from '../../actions/workoutExerciseActions';
 import { useParams } from 'react-router-dom';
 
-export default function WorkoutForm({ runGetWorkoutExercises }) {
+export default function AddWorkoutExercise({ runGetWorkoutExercises }) {
 	const [open, setOpen] = useState(false);
 	const [exercises, setExercises] = useState([]);
 	const [exerciseId, setExerciseId] = useState('');

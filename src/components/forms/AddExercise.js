@@ -6,28 +6,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useState } from 'react';
-import { createProgram } from '../../actions/programActions';
 import AddButton from './AddButton';
 
-const ProgramsForm = ({ runGetPrograms }) => {
-	const [name, setName] = useState('');
-	const [description, setDescription] = useState('');
-	const [open, setOpen] = useState(false);
-
-	const onSubmit = async () => {
-		const newProgram = {
-			name,
-			description,
-		};
-		const res = await createProgram(newProgram);
-
-		setName('');
-		setDescription('');
-
-		runGetPrograms();
-		setOpen(false);
-	};
+export default function AddExercise() {
+	const [open, setOpen] = React.useState(false);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -41,40 +23,32 @@ const ProgramsForm = ({ runGetPrograms }) => {
 		<React.Fragment>
 			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
-				<DialogTitle>Create new program</DialogTitle>
+				<DialogTitle>Create new exercise</DialogTitle>
 				<DialogContent>
 					<DialogContentText>Lorem ipsum dolar sit.</DialogContentText>
 					<TextField
 						autoFocus
 						margin='dense'
-						name='name'
-						value={name}
 						id='name'
-						label='Program Name'
+						label='Exercise Name'
 						type='text'
 						fullWidth
 						variant='standard'
-						onChange={(e) => setName(e.target.value)}
 					/>
 					<TextField
-						name='description'
-						value={description}
 						margin='dense'
 						id='description'
 						label='Description'
 						type='text'
 						fullWidth
 						variant='standard'
-						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={onSubmit}>Create Program</Button>
+					<Button onClick={handleClose}>Create Exercise</Button>
 				</DialogActions>
 			</Dialog>
 		</React.Fragment>
 	);
-};
-
-export default ProgramsForm;
+}
