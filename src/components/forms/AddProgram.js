@@ -7,10 +7,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
-import { createProgram } from '../../actions/programActions';
+import { createProgram, getPrograms } from '../../actions/programActions';
 import AddButton from './AddButton';
 
-const AddProgram = ({ runGetPrograms }) => {
+const AddProgram = () => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [open, setOpen] = useState(false);
@@ -25,7 +25,6 @@ const AddProgram = ({ runGetPrograms }) => {
 		setName('');
 		setDescription('');
 
-		runGetPrograms();
 		setOpen(false);
 	};
 
@@ -54,6 +53,7 @@ const AddProgram = ({ runGetPrograms }) => {
 						type='text'
 						fullWidth
 						variant='standard'
+						required
 						onChange={(e) => setName(e.target.value)}
 					/>
 					<TextField
@@ -65,6 +65,7 @@ const AddProgram = ({ runGetPrograms }) => {
 						type='text'
 						fullWidth
 						variant='standard'
+						required
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</DialogContent>

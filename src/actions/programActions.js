@@ -1,15 +1,9 @@
 import axios from 'axios';
+import useFetch from '../services/useFetch';
 
 // Get Programs from server
-export const getPrograms = async () => {
-	try {
-		const res = await axios.get(
-			'https://localhost:7097/Programs/GetAllPrograms'
-		);
-		return res.data;
-	} catch (err) {
-		console.error(err.message);
-	}
+export const getPrograms = () => {
+	return useFetch('Programs/GetAllPrograms');
 };
 
 export const getProgram = async (id) => {

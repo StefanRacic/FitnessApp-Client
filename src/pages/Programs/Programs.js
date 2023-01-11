@@ -1,28 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import AddProgram from '../../components/forms/AddProgram';
-import { getPrograms } from '../../actions/programActions';
 import ProgramsList from './ProgramsList';
+import Spinner from '../../components/common/Spinner';
+import { getPrograms } from '../../actions/programActions';
 
 const Programs = () => {
-	const [programs, setPrograms] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const { data: programs, loading, error } = getPrograms();
 
-	const runGetPrograms = async () => {
-		const res = await getPrograms();
-		if (res) {
-			setPrograms(res);
-			setLoading(false);
-		}
-	};
-
-	useEffect(() => {
-		runGetPrograms();
-	}, []);
+	if (error) throw error;
+	if (loading) return <Spinner />;
 
 	return (
 		<React.Fragment>
-			<ProgramsList programs={programs} loading={loading} />
-			<AddProgram runGetPrograms={runGetPrograms} />
+			<ProgramsList programs={programs} />
+			<AddProgram />
 		</React.Fragment>
 	);
 };

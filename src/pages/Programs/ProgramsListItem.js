@@ -11,13 +11,10 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import ItemOptions from '../../components/options/ItemOptions';
 import { Skeleton } from '@mui/material';
 
-const ProgramsListItem = ({ program, loading }) => {
+const ProgramsListItem = ({ program }) => {
 	const { id, name, description } = program;
-	return loading ? (
-		<Grid>
-			<Skeleton width={345} height={500} />
-		</Grid>
-	) : (
+
+	return (
 		<Grid>
 			<Card sx={{ width: 345 }}>
 				<CardMedia
