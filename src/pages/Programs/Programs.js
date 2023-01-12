@@ -11,10 +11,10 @@ const Programs = () => {
 	if (loading) return <Spinner />;
 
 	return (
-		<React.Fragment>
+		<>
 			<ProgramsList programs={programs} />
 			<AddProgram />
-		</React.Fragment>
+		</>
 	);
 };
 

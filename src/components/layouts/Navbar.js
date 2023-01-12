@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FitbitIcon from '@mui/icons-material/Fitbit';
 import { Link } from 'react-router-dom';
 
-const pages = ['Programs', 'Exercises'];
+const pages = ['programs', 'exercises'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {

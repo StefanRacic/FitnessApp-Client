@@ -12,30 +12,17 @@ import Title from '../../components/common/Title';
 import Description from '../../components/common/Description';
 
 const Workout = () => {
-	const params = useParams();
-	const [workout, setWorkout] = useState({});
-	const [workoutExercises, setWorkoutExercises] = useState([]);
-	const runGetWorkout = async () => {
-		const res = await getWorkout(params.id);
-		setWorkout(res);
-	};
-	const runGetWorkoutExercises = async () => {
-		const res = await getWorkoutExercisesByWorkoutId(params.id);
-		setWorkoutExercises(res);
-	};
-	useEffect(() => {
-		runGetWorkout();
-		runGetWorkoutExercises();
-	}, []);
+	const { id } = useParams();
+
 	return (
 		<Fragment>
 			<BannerImage />
 			<Container>
-				<Title title={workout.name} />
-				<Description description={workout.description} />
+				<Title title='Workout.Name' />
+				<Description description='Workout.Description' />
 				<Title title='Workout Exercises' />
-				<WorkoutExercises workoutExercises={workoutExercises} />
-				<AddWorkoutExercise runGetWorkoutExercises={runGetWorkoutExercises} />
+				<WorkoutExercises workoutExercises={[]} />
+				<AddWorkoutExercise />
 			</Container>
 		</Fragment>
 	);

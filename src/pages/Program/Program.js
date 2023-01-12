@@ -8,28 +8,14 @@ import { getWorkoutsByProgramId } from '../../actions/workoutActions';
 import BannerImage from '../../components/common/BannerImage';
 import Title from '../../components/common/Title';
 import Description from '../../components/common/Description';
+import Spinner from '../../components/common/Spinner';
 
 const Program = () => {
-	const params = useParams();
+	const { id } = useParams();
+	const { data: program, loading, error } = getProgram(id);
 
-	const [program, setProgram] = useState({});
-	const [workouts, setWorkouts] = useState([]);
-
-	const runGetProgram = async () => {
-		const res = await getProgram(params.id);
-		setProgram(res);
-	};
-
-	const runGetWorkoutsByProgramId = async () => {
-		const res = await getWorkoutsByProgramId(params.id);
-		setWorkouts(res);
-	};
-
-	useEffect(() => {
-		runGetProgram();
-		runGetWorkoutsByProgramId();
-	}, []);
-
+	if (error) throw error;
+	if (loading) return <Spinner />;
 	return (
 		<Fragment>
 			<BannerImage />
@@ -37,8 +23,8 @@ const Program = () => {
 				<Title title={program.name} />
 				<Description description={program.description} />
 				<Title title='Workouts' />
-				<Workouts workouts={workouts} />
-				<AddWorkout runGetWorkoutsByProgramId={runGetWorkoutsByProgramId} />
+				<Workouts programId={program.id} />
+				<AddWorkout />
 			</Container>
 		</Fragment>
 	);

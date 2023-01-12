@@ -4,8 +4,15 @@ import React from 'react';
 import WorkoutItem from './WorkoutItem';
 import styles from './workouts.module.css';
 import { Typography } from '@mui/material';
+import { getWorkoutsByProgramId } from '../../actions/workoutActions';
+import Spinner from '../../components/common/Spinner';
 
-const Workouts = ({ workouts }) => {
+const Workouts = ({ programId }) => {
+	const { data: workouts, loading, error } = getWorkoutsByProgramId(programId);
+
+	if (error) throw error;
+	if (loading) return <Spinner />;
+
 	return (
 		<div className={styles.wrapper}>
 			<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>

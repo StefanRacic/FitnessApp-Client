@@ -3,7 +3,7 @@ import axios from 'axios';
 export const getWorkoutExercisesByWorkoutId = async (id) => {
 	try {
 		const res = await axios.get(
-			`https://localhost:7097/WorkoutExercises/GetAllWorkoutExercisesByWorkoutId?workoutId=${id}`
+			`https://localhost:7097/api/workoutExercises/GetAllWorkoutExercisesByWorkoutId?workoutId=${id}`
 		);
 		return res.data;
 	} catch (err) {
@@ -14,7 +14,7 @@ export const getWorkoutExercisesByWorkoutId = async (id) => {
 export const createWorkoutExercise = async (workoutExercise) => {
 	try {
 		const res = await axios.post(
-			'https://localhost:7097/WorkoutExercises/CreateWorkoutExercise',
+			'https://localhost:7097/api/WorkoutExercises/create',
 			workoutExercise
 		);
 		return res.data;
