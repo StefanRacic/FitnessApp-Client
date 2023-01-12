@@ -1,24 +1,19 @@
 import axios from 'axios';
+import useFetch from '../services/useFetch';
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 export const getWorkoutExercisesByWorkoutId = async (id) => {
-	try {
-		const res = await axios.get(
-			`https://localhost:7097/api/workoutExercises/GetAllWorkoutExercisesByWorkoutId?workoutId=${id}`
-		);
-		return res.data;
-	} catch (err) {
-		console.error(err.message);
-	}
+	return useFetch(
+		`api/workoutExercises/GetAllWorkoutExercisesByWorkoutId?workoutId=${id}`
+	);
 };
 
 export const createWorkoutExercise = async (workoutExercise) => {
-	try {
-		const res = await axios.post(
-			'https://localhost:7097/api/WorkoutExercises/create',
-			workoutExercise
-		);
-		return res.data;
-	} catch (err) {
-		console.error(err.message);
-	}
+	return fetch(baseUrl + 'api/WorkoutExercises/create', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(workoutExercise),
+	});
 };
