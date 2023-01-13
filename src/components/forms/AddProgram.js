@@ -20,8 +20,7 @@ const AddProgram = () => {
 			name,
 			description,
 		};
-		const res = await createProgram(newProgram);
-
+		createProgram(newProgram);
 		setName('');
 		setDescription('');
 
