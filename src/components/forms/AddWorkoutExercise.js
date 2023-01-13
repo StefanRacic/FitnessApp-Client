@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -7,7 +7,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import AddButton from './AddButton';
-import { getExercises } from '../../actions/exerciseActions';
 import ExercisesSelect from './ExercisesSelect';
 import { createWorkoutExercise } from '../../actions/workoutExerciseActions';
 import { useParams } from 'react-router-dom';
@@ -18,13 +17,6 @@ export default function AddWorkoutExercise({ runGetWorkoutExercises }) {
 	const [exerciseId, setExerciseId] = useState('');
 	const [sets, setSets] = useState('');
 	const params = useParams();
-
-	const runGetExercises = async () => {
-		const res = await getExercises();
-		if (res) {
-			setExercises(res);
-		}
-	};
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -49,10 +41,6 @@ export default function AddWorkoutExercise({ runGetWorkoutExercises }) {
 		runGetWorkoutExercises();
 		setOpen(false);
 	};
-
-	useEffect(() => {
-		runGetExercises();
-	}, []);
 
 	return (
 		<div>

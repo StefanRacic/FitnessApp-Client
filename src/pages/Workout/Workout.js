@@ -1,30 +1,32 @@
-import { Typography } from '@mui/material';
+import React from 'react';
 import { Container } from '@mui/system';
-import React, { Fragment, useEffect, useState } from 'react';
-import styles from '../Program/program.module.css';
 import WorkoutExercises from './WorkoutExercises';
 import AddWorkoutExercise from '../../components/forms/AddWorkoutExercise';
-import { getWorkout } from '../../actions/workoutActions';
 import { useParams } from 'react-router-dom';
-import { getWorkoutExercisesByWorkoutId } from '../../actions/workoutExerciseActions';
 import BannerImage from '../../components/common/BannerImage';
 import Title from '../../components/common/Title';
 import Description from '../../components/common/Description';
+import Spinner from '../../components/common/Spinner';
+import { getWorkout } from '../../actions/workoutActions';
 
 const Workout = () => {
 	const { id } = useParams();
+	const { data: workout, loading, error } = getWorkout(id);
+
+	if (error) throw error;
+	if (loading) return <Spinner />;
 
 	return (
-		<Fragment>
+		<>
 			<BannerImage />
 			<Container>
-				<Title title='Workout.Name' />
-				<Description description='Workout.Description' />
+				<Title title={workout.name} />
+				<Description description={workout.description} />
 				<Title title='Workout Exercises' />
-				<WorkoutExercises workoutExercises={[]} />
+				<WorkoutExercises workoutId={id} />
 				<AddWorkoutExercise />
 			</Container>
-		</Fragment>
+		</>
 	);
 };
 

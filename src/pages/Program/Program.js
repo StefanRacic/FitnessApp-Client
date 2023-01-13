@@ -1,10 +1,9 @@
 import { Container } from '@mui/system';
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment } from 'react';
 import Workouts from './Workouts';
 import AddWorkout from '../../components/forms/AddWorkout';
 import { useParams } from 'react-router-dom';
 import { getProgram } from '../../actions/programActions';
-import { getWorkoutsByProgramId } from '../../actions/workoutActions';
 import BannerImage from '../../components/common/BannerImage';
 import Title from '../../components/common/Title';
 import Description from '../../components/common/Description';
@@ -16,6 +15,7 @@ const Program = () => {
 
 	if (error) throw error;
 	if (loading) return <Spinner />;
+
 	return (
 		<Fragment>
 			<BannerImage />

@@ -2,8 +2,19 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import React from 'react';
 import WorkoutExerciseItem from './WorkoutExerciseItem';
 import styles from '../Program/workouts.module.css';
+import { getWorkoutExercisesByWorkoutId } from '../../actions/workoutExerciseActions';
+import Spinner from '../../components/common/Spinner';
 
-const WorkoutExercises = ({ workoutExercises }) => {
+const WorkoutExercises = ({ workoutId }) => {
+	const {
+		data: workoutExercises,
+		loading,
+		error,
+	} = getWorkoutExercisesByWorkoutId(workoutId);
+
+	if (error) throw error;
+	if (loading) return <Spinner />;
+
 	return (
 		<div className={styles.wrapper}>
 			<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
