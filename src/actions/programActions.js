@@ -17,5 +17,5 @@ export const createProgram = async (program) => {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(program),
-	});
+	}).then((res) => res.json());
 };

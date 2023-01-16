@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { createProgram, getPrograms } from '../../actions/programActions';
 import AddButton from './AddButton';
 
-const AddProgram = () => {
+const AddProgram = ({ handleAddProgram }) => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [open, setOpen] = useState(false);
@@ -20,7 +20,15 @@ const AddProgram = () => {
 			name,
 			description,
 		};
-		createProgram(newProgram);
+
+		const res = await createProgram(newProgram);
+
+		handleAddProgram({
+			name: res.name,
+			description: res.description,
+			id: res.id,
+		});
+
 		setName('');
 		setDescription('');
 
