@@ -45,15 +45,8 @@ export default function ItemOptions() {
 					},
 				}}
 			>
-				{options.map((option) => (
-					<MenuItem
-						key={option}
-						selected={option === 'Pyxis'}
-						onClick={handleClose}
-					>
-						{option}
-					</MenuItem>
-				))}
+				<MenuItem>Edit</MenuItem>
+				<MenuItem>Delete</MenuItem>
 			</Menu>
 		</div>
 	);

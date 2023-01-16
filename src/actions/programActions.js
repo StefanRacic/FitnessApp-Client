@@ -19,3 +19,12 @@ export const createProgram = async (program) => {
 		body: JSON.stringify(program),
 	}).then((res) => res.json());
 };
+
+export const removeProrgam = async (id) => {
+	return await fetch(baseUrl + `/api/programs/remove?id=${id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	}).then((res) => res.json());
+};

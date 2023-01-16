@@ -33,6 +33,13 @@ const Programs = () => {
 		});
 	};
 
+	const handleRemoveProgram = (id) => {
+		dispatch({
+			type: 'remove',
+			payload: id,
+		});
+	};
+
 	if (state.error) throw error;
 	if (state.loading) return <Spinner />;
 

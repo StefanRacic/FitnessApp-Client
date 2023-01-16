@@ -13,6 +13,14 @@ export default function programsReducer(state, action) {
 				error: null,
 			};
 		}
+		case 'remove': {
+			return {
+				...state,
+				programs: state.programs.filter(
+					(program) => program.id !== action.payload
+				),
+			};
+		}
 		default:
 			throw new Error('Unhandled action ' + action.type);
 	}
