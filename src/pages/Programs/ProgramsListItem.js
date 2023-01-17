@@ -9,10 +9,10 @@ import ProgramImagePlaceHolder from '../../assets/images/placeholders/program-pl
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import ItemOptions from '../../components/options/ItemOptions';
+import { removeProgram } from '../../actions/programActions';
 
-const ProgramsListItem = ({ program, handleRemoveProgram }) => {
+const ProgramsListItem = ({ program, handleRemoveItem }) => {
 	const { id, name, description } = program;
-
 	return (
 		<Grid>
 			<Card sx={{ width: 345 }}>
@@ -41,7 +41,8 @@ const ProgramsListItem = ({ program, handleRemoveProgram }) => {
 					</Button>
 					<ItemOptions
 						item={program}
-						handleRemoveProgram={handleRemoveProgram}
+						removeItem={removeProgram}
+						handleRemoveItem={handleRemoveItem}
 					/>
 				</CardActions>
 			</Card>

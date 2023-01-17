@@ -26,20 +26,6 @@ const Programs = () => {
 		});
 	}, [programs]);
 
-	const handleAddProgram = (program) => {
-		dispatch({
-			type: 'add',
-			payload: program,
-		});
-	};
-
-	const handleRemoveProgram = (id) => {
-		dispatch({
-			type: 'remove',
-			payload: id,
-		});
-	};
-
 	if (state.error) throw error;
 	if (state.loading) return <Spinner />;
 
@@ -48,9 +34,9 @@ const Programs = () => {
 			<ProgramsList
 				programs={state.programs}
 				loading={loading}
-				handleRemoveProgram={handleRemoveProgram}
+				dispatch={dispatch}
 			/>
-			<AddProgram handleAddProgram={handleAddProgram} />
+			<AddProgram dispatch={dispatch} />
 		</>
 	);
 };

@@ -3,11 +3,10 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { removeProrgam } from '../../actions/programActions';
 
 const ITEM_HEIGHT = 48;
 
-export default function ItemOptions({ item, handleRemoveProgram }) {
+export default function ItemOptions({ item, removeItem, handleRemoveItem }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	const open = Boolean(anchorEl);
@@ -21,8 +20,8 @@ export default function ItemOptions({ item, handleRemoveProgram }) {
 	};
 
 	const handleRemove = () => {
-		removeProrgam(item.id);
-		handleRemoveProgram(item.id);
+		removeItem(item.id);
+		handleRemoveItem(item.id);
 		setAnchorEl(null);
 	};
 

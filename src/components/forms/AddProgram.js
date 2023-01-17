@@ -7,10 +7,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
-import { createProgram, getPrograms } from '../../actions/programActions';
+import { createProgram } from '../../actions/programActions';
 import AddButton from './AddButton';
 
-const AddProgram = ({ handleAddProgram }) => {
+const AddProgram = ({ dispatch }) => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [open, setOpen] = useState(false);
@@ -23,10 +23,13 @@ const AddProgram = ({ handleAddProgram }) => {
 
 		const res = await createProgram(newProgram);
 
-		handleAddProgram({
-			name: res.name,
-			description: res.description,
-			id: res.id,
+		dispatch({
+			type: 'add',
+			payload: {
+				id: res.id,
+				name: newProgram.name,
+				description: newProgram.description,
+			},
 		});
 
 		setName('');

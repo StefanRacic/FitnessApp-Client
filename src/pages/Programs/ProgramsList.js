@@ -4,7 +4,14 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import ProgramsListItem from './ProgramsListItem';
 import Spinner from '../../components/common/Spinner';
 
-const ProgramsList = ({ programs, loading, handleRemoveProgram }) => {
+const ProgramsList = ({ programs, loading, dispatch }) => {
+	const handleRemoveItem = (id) => {
+		dispatch({
+			type: 'remove',
+			payload: id,
+		});
+	};
+
 	if (loading) return <Spinner />;
 	return (
 		<Container sx={{ p: 20 }}>
@@ -14,7 +21,7 @@ const ProgramsList = ({ programs, loading, handleRemoveProgram }) => {
 						<ProgramsListItem
 							key={program.id}
 							program={program}
-							handleRemoveProgram={handleRemoveProgram}
+							handleRemoveItem={handleRemoveItem}
 						/>
 					);
 				})}
