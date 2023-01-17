@@ -1,6 +1,8 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import AddProgram from '../../components/forms/AddProgram';
-import ProgramsList from './ProgramsList';
+import { Container } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2/Grid2';
+import ProgramsItem from './ProgramsItem';
 import Spinner from '../../components/common/Spinner';
 import { getPrograms } from '../../actions/programActions';
 import programsReducer from '../../reducers/programsReducer';
@@ -30,14 +32,20 @@ const Programs = () => {
 	if (state.loading) return <Spinner />;
 
 	return (
-		<>
-			<ProgramsList
-				programs={state.programs}
-				loading={loading}
-				dispatch={dispatch}
-			/>
+		<Container sx={{ p: 20 }}>
+			<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
+				{state.programs.map((program) => {
+					return (
+						<ProgramsItem
+							key={program.id}
+							program={program}
+							dispatch={dispatch}
+						/>
+					);
+				})}
+			</Grid>
 			<AddProgram dispatch={dispatch} />
-		</>
+		</Container>
 	);
 };
 

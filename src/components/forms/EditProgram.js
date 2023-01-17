@@ -1,27 +1,29 @@
+import React, { useState } from 'react';
 import {
+	TextField,
+	Button,
 	Dialog,
+	DialogActions,
 	DialogContent,
 	DialogContentText,
 	DialogTitle,
 } from '@mui/material';
-import React, { useState } from 'react';
 
-const EditProgram = ({ program }) => {
-	const [open, setOpen] = useState(false);
+const EditProgram = ({ program, editModal, setEditModal }) => {
 	const [name, setName] = useState(program.name);
 	const [description, setDescription] = useState(program.description);
 
 	const handleOpen = () => {
-		setOpen(true);
+		setEditModal(true);
 	};
 
 	const handleClose = () => {
-		setOpen(false);
+		setEditModal(false);
 	};
 
 	return (
 		<div>
-			<Dialog open={open} onClose={handleClose}>
+			<Dialog open={editModal} onClose={handleClose}>
 				<DialogTitle>Edit Program</DialogTitle>
 				<DialogContent>
 					<DialogContentText>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -10,8 +10,10 @@ import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import ItemOptions from '../../components/options/ItemOptions';
 import { removeProgram } from '../../actions/programActions';
+import EditProgram from '../../components/forms/EditProgram';
 
-const ProgramsListItem = ({ program, dispatch }) => {
+const ProgramsItem = ({ program, dispatch }) => {
+	const [editModal, setEditModal] = useState(false);
 	const { id, name, description } = program;
 	return (
 		<Grid>
@@ -41,13 +43,19 @@ const ProgramsListItem = ({ program, dispatch }) => {
 					</Button>
 					<ItemOptions
 						item={program}
+						setEditModal={setEditModal}
 						removeItem={removeProgram}
 						dispatch={dispatch}
 					/>
 				</CardActions>
 			</Card>
+			<EditProgram
+				program={program}
+				editModal={editModal}
+				setEditModal={setEditModal}
+			/>
 		</Grid>
 	);
 };
 
-export default ProgramsListItem;
+export default ProgramsItem;

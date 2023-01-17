@@ -6,7 +6,12 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const ITEM_HEIGHT = 48;
 
-export default function ItemOptions({ item, removeItem, dispatch }) {
+export default function ItemOptions({
+	item,
+	removeItem,
+	dispatch,
+	setEditModal,
+}) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	const open = Boolean(anchorEl);
@@ -25,6 +30,11 @@ export default function ItemOptions({ item, removeItem, dispatch }) {
 			type: 'remove',
 			payload: item.id,
 		});
+		setAnchorEl(null);
+	};
+
+	const handleEdit = () => {
+		setEditModal(true);
 		setAnchorEl(null);
 	};
 
@@ -55,7 +65,7 @@ export default function ItemOptions({ item, removeItem, dispatch }) {
 					},
 				}}
 			>
-				<MenuItem>Edit</MenuItem>
+				<MenuItem onClick={handleEdit}>Edit</MenuItem>
 				<MenuItem onClick={handleRemove}>Remove</MenuItem>
 			</Menu>
 		</div>
