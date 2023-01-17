@@ -6,7 +6,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const ITEM_HEIGHT = 48;
 
-export default function ItemOptions({ item, removeItem, handleRemoveItem }) {
+export default function ItemOptions({ item, removeItem, dispatch }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	const open = Boolean(anchorEl);
@@ -21,7 +21,10 @@ export default function ItemOptions({ item, removeItem, handleRemoveItem }) {
 
 	const handleRemove = () => {
 		removeItem(item.id);
-		handleRemoveItem(item.id);
+		dispatch({
+			type: 'remove',
+			payload: item.id,
+		});
 		setAnchorEl(null);
 	};
 

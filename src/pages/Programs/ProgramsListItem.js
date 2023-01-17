@@ -11,7 +11,7 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import ItemOptions from '../../components/options/ItemOptions';
 import { removeProgram } from '../../actions/programActions';
 
-const ProgramsListItem = ({ program, handleRemoveItem }) => {
+const ProgramsListItem = ({ program, dispatch }) => {
 	const { id, name, description } = program;
 	return (
 		<Grid>
@@ -42,7 +42,7 @@ const ProgramsListItem = ({ program, handleRemoveItem }) => {
 					<ItemOptions
 						item={program}
 						removeItem={removeProgram}
-						handleRemoveItem={handleRemoveItem}
+						dispatch={dispatch}
 					/>
 				</CardActions>
 			</Card>
