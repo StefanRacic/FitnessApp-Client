@@ -3,18 +3,26 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-const options = ['Edit', 'Delete'];
+import { removeProrgam } from '../../actions/programActions';
 
 const ITEM_HEIGHT = 48;
 
-export default function ItemOptions() {
+export default function ItemOptions({ item, handleRemoveProgram }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
+
 	const open = Boolean(anchorEl);
+
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
+
 	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
+	const handleRemove = () => {
+		removeProrgam(item.id);
+		handleRemoveProgram(item.id);
 		setAnchorEl(null);
 	};
 
@@ -46,7 +54,7 @@ export default function ItemOptions() {
 				}}
 			>
 				<MenuItem>Edit</MenuItem>
-				<MenuItem>Delete</MenuItem>
+				<MenuItem onClick={handleRemove}>Remove</MenuItem>
 			</Menu>
 		</div>
 	);

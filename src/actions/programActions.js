@@ -21,10 +21,10 @@ export const createProgram = async (program) => {
 };
 
 export const removeProrgam = async (id) => {
-	return await fetch(baseUrl + `/api/programs/remove?id=${id}`, {
+	return await fetch(baseUrl + `api/programs/remove?id=${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
 		},
-	}).then((res) => res.json());
+	});
 };

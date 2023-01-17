@@ -45,7 +45,11 @@ const Programs = () => {
 
 	return (
 		<>
-			<ProgramsList programs={state.programs} loading={loading} />
+			<ProgramsList
+				programs={state.programs}
+				loading={loading}
+				handleRemoveProgram={handleRemoveProgram}
+			/>
 			<AddProgram handleAddProgram={handleAddProgram} />
 		</>
 	);
