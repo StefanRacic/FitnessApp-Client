@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { createProgram } from '../../actions/programActions';
 import AddButton from './AddButton';
 
-const AddProgram = ({ dispatch }) => {
+const AddProgram = ({ setPrograms }) => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [open, setOpen] = useState(false);
@@ -23,14 +23,7 @@ const AddProgram = ({ dispatch }) => {
 
 		const res = await createProgram(newProgram);
 
-		dispatch({
-			type: 'add',
-			payload: {
-				id: res.id,
-				name: newProgram.name,
-				description: newProgram.description,
-			},
-		});
+		setPrograms((current) => [...current, res]);
 
 		setName('');
 		setDescription('');
@@ -47,7 +40,7 @@ const AddProgram = ({ dispatch }) => {
 	};
 
 	return (
-		<React.Fragment>
+		<>
 			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
 				<DialogTitle>Create new program</DialogTitle>
@@ -84,7 +77,7 @@ const AddProgram = ({ dispatch }) => {
 					<Button onClick={onSubmit}>Create Program</Button>
 				</DialogActions>
 			</Dialog>
-		</React.Fragment>
+		</>
 	);
 };
 

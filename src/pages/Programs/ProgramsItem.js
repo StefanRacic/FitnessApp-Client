@@ -12,7 +12,7 @@ import ItemOptions from '../../components/options/ItemOptions';
 import { removeProgram } from '../../actions/programActions';
 import EditProgram from '../../components/forms/EditProgram';
 
-const ProgramsItem = ({ program, dispatch }) => {
+const ProgramsItem = ({ program, setPrograms }) => {
 	const [editModal, setEditModal] = useState(false);
 	const { id, name, description } = program;
 	return (
@@ -45,7 +45,7 @@ const ProgramsItem = ({ program, dispatch }) => {
 						item={program}
 						setEditModal={setEditModal}
 						removeItem={removeProgram}
-						dispatch={dispatch}
+						setItems={setPrograms}
 					/>
 				</CardActions>
 			</Card>

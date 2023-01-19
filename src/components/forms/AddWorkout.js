@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -11,7 +11,7 @@ import { createWorkout } from '../../actions/workoutActions';
 import { useParams } from 'react-router-dom';
 import AddButton from './AddButton';
 
-export default function AddWorkout({ runGetWorkoutsByProgramId }) {
+export default function AddWorkout({ setWorkouts }) {
 	const params = useParams();
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
@@ -23,14 +23,10 @@ export default function AddWorkout({ runGetWorkoutsByProgramId }) {
 			description,
 			programId: params.id,
 		};
-
 		const res = await createWorkout(newWorkout);
-
+		setWorkouts((current) => [...current, res]);
 		setName('');
 		setDescription('');
-
-		runGetWorkoutsByProgramId();
-
 		setOpen(false);
 	};
 

@@ -20,7 +20,7 @@ export default function AddExercise() {
 	};
 
 	return (
-		<React.Fragment>
+		<>
 			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
 				<DialogTitle>Create new exercise</DialogTitle>
@@ -49,6 +49,6 @@ export default function AddExercise() {
 					<Button onClick={handleClose}>Create Exercise</Button>
 				</DialogActions>
 			</Dialog>
-		</React.Fragment>
+		</>
 	);
 }

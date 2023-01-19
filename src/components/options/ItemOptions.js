@@ -9,8 +9,8 @@ const ITEM_HEIGHT = 48;
 export default function ItemOptions({
 	item,
 	removeItem,
-	dispatch,
 	setEditModal,
+	setItems,
 }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -26,10 +26,7 @@ export default function ItemOptions({
 
 	const handleRemove = () => {
 		removeItem(item.id);
-		dispatch({
-			type: 'remove',
-			payload: item.id,
-		});
+		setItems((current) => [...current].filter((i) => i.id !== item.id));
 		setAnchorEl(null);
 	};
 

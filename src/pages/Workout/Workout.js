@@ -24,7 +24,6 @@ const Workout = () => {
 				<Description description={workout.description} />
 				<Title title='Workout Exercises' />
 				<WorkoutExercises workoutId={id} />
-				<AddWorkoutExercise />
 			</Container>
 		</>
 	);

@@ -6,8 +6,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import ItemOptions from '../../components/options/ItemOptions';
+import { removeWorkout } from '../../actions/workoutActions';
 
-export default function WorkoutItem({ workout }) {
+export default function WorkoutItem({ workout, setWorkouts }) {
 	return (
 		<Card sx={{ minWidth: 275 }}>
 			<CardContent>
@@ -29,7 +30,11 @@ export default function WorkoutItem({ workout }) {
 				>
 					Open
 				</Button>
-				<ItemOptions />
+				<ItemOptions
+					item={workout}
+					removeItem={removeWorkout}
+					setItems={setWorkouts}
+				/>
 			</CardActions>
 		</Card>
 	);
