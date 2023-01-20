@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,14 +6,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const ITEM_HEIGHT = 48;
 
-export default function ItemOptions({
-	item,
-	removeItem,
-	setEditModal,
-	setItems,
-}) {
+const ItemOptions = ({ item, removeItem, setEditModal, setItems }) => {
 	const [anchorEl, setAnchorEl] = React.useState(null);
-
 	const open = Boolean(anchorEl);
 
 	const handleClick = (event) => {
@@ -67,4 +61,6 @@ export default function ItemOptions({
 			</Menu>
 		</div>
 	);
-}
+};
+
+export default ItemOptions;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import ItemOptions from '../../components/options/ItemOptions';
 import { removeWorkout } from '../../actions/workoutActions';
 
-export default function WorkoutItem({ workout, setWorkouts }) {
+const WorkoutItem = ({ workout, setWorkouts }) => {
 	return (
 		<Card sx={{ minWidth: 275 }}>
 			<CardContent>
@@ -38,4 +38,6 @@ export default function WorkoutItem({ workout, setWorkouts }) {
 			</CardActions>
 		</Card>
 	);
-}
+};
+
+export default WorkoutItem;

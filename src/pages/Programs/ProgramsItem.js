@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import ItemOptions from '../../components/options/ItemOptions';
 import { removeProgram } from '../../actions/programActions';
-import EditProgram from '../../components/forms/EditProgram';
+import EditProgram from '../../components/forms/edit/EditProgram';
 
 const ProgramsItem = ({ program, setPrograms }) => {
 	const [editModal, setEditModal] = useState(false);

@@ -4,7 +4,7 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import Exercise from './Exercise';
 import { getExercises } from '../../actions/exerciseActions';
 import Spinner from '../../components/common/Spinner';
-import AddExercise from '../../components/forms/AddExercise';
+import AddExercise from '../../components/forms/add/AddExercise';
 import { Typography } from '@mui/material';
 
 const Exercises = () => {

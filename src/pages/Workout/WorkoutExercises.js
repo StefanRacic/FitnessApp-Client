@@ -1,10 +1,10 @@
-import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import React from 'react';
+import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import WorkoutExerciseItem from './WorkoutExerciseItem';
 import styles from '../Program/workouts.module.css';
 import { getWorkoutExercisesByWorkoutId } from '../../actions/workoutExerciseActions';
 import Spinner from '../../components/common/Spinner';
-import AddWorkoutExercise from '../../components/forms/AddWorkoutExercise';
+import AddWorkoutExercise from '../../components/forms/add/AddWorkoutExercise';
 import { Typography } from '@mui/material';
 
 const WorkoutExercises = ({ workoutId }) => {

@@ -6,7 +6,7 @@ import styles from './workouts.module.css';
 import { Typography } from '@mui/material';
 import { getWorkoutsByProgramId } from '../../actions/workoutActions';
 import Spinner from '../../components/common/Spinner';
-import AddWorkout from '../../components/forms/AddWorkout';
+import AddWorkout from '../../components/forms/add/AddWorkout';
 
 const Workouts = ({ programId }) => {
 	const {

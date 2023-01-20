@@ -1,5 +1,5 @@
 import React from 'react';
-import AddProgram from '../../components/forms/AddProgram';
+import AddProgram from '../../components/forms/add/AddProgram';
 import { Container } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import ProgramsItem from './ProgramsItem';

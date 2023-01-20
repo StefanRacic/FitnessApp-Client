@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,29 +6,32 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useState } from 'react';
+import { createProgram } from '../../../actions/programActions';
 import AddButton from './AddButton';
-import { createExercise } from '../../actions/exerciseActions';
 
-export default function AddExercise({ setExercises }) {
+const AddProgram = ({ setPrograms }) => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
-	const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = useState(false);
 
-	const onSubmit = async () => {
-		const newExercise = {
-			name,
-			description,
-		};
-		const res = await createExercise(newExercise);
-		setExercises((current) => [...current, res]);
-		setName('');
-		setDescription('');
-		setOpen(false);
-	};
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
+
 	const handleClose = () => {
+		setOpen(false);
+	};
+
+	const onSubmit = async () => {
+		const newProgram = {
+			name,
+			description,
+		};
+		const res = await createProgram(newProgram);
+		setPrograms((current) => [...current, res]);
+		setName('');
+		setDescription('');
 		setOpen(false);
 	};
 
@@ -36,36 +39,42 @@ export default function AddExercise({ setExercises }) {
 		<>
 			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
-				<DialogTitle>Create new exercise</DialogTitle>
+				<DialogTitle>Create new program</DialogTitle>
 				<DialogContent>
 					<DialogContentText>Lorem ipsum dolar sit.</DialogContentText>
 					<TextField
 						autoFocus
 						margin='dense'
-						id='name'
+						name='name'
 						value={name}
-						label='Exercise Name'
+						id='name'
+						label='Program Name'
 						type='text'
 						fullWidth
 						variant='standard'
+						required
 						onChange={(e) => setName(e.target.value)}
 					/>
 					<TextField
+						name='description'
+						value={description}
 						margin='dense'
 						id='description'
-						value={description}
 						label='Description'
 						type='text'
 						fullWidth
 						variant='standard'
+						required
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</DialogContent>
 				<DialogActions>
+					<Button onClick={onSubmit}>Create Program</Button>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={onSubmit}>Create Exercise</Button>
 				</DialogActions>
 			</Dialog>
 		</>
 	);
-}
+};
+
+export default AddProgram;

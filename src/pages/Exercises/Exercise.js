@@ -44,7 +44,6 @@ const Exercise = ({ exercise, setExercises }) => {
 					/>
 				</div>
 			</CardContent>
-			<CardActions></CardActions>
 		</Card>
 	);
 };

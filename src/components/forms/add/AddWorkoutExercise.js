@@ -7,12 +7,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import AddButton from './AddButton';
-import ExercisesSelect from './ExercisesSelect';
-import { createWorkoutExercise } from '../../actions/workoutExerciseActions';
+import ExercisesSelect from '../common/ExercisesSelect';
+import { createWorkoutExercise } from '../../../actions/workoutExerciseActions';
 import { useParams } from 'react-router-dom';
-import { getExercises } from '../../actions/exerciseActions';
+import { getExercises } from '../../../actions/exerciseActions';
+import Spinner from '../../common/Spinner';
 
-export default function AddWorkoutExercise({ setWorkoutExercises }) {
+const AddWorkoutExercise = ({ setWorkoutExercises }) => {
 	const params = useParams();
 	const { data: exercises, loading, error } = getExercises();
 	const [exerciseId, setExerciseId] = useState('');
@@ -40,6 +41,9 @@ export default function AddWorkoutExercise({ setWorkoutExercises }) {
 		setOpen(false);
 	};
 
+	if (error) throw error;
+	if (loading) return <Spinner />;
+
 	return (
 		<div>
 			<AddButton handleClickOpen={handleClickOpen} />
@@ -48,8 +52,6 @@ export default function AddWorkoutExercise({ setWorkoutExercises }) {
 				<DialogContent>
 					<DialogContentText>Lorem ipsum dolar sit.</DialogContentText>
 					<ExercisesSelect
-						loading={loading}
-						error={error}
 						exercises={exercises}
 						setExerciseId={setExerciseId}
 					/>
@@ -68,10 +70,12 @@ export default function AddWorkoutExercise({ setWorkoutExercises }) {
 					/>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose}>Cancel</Button>
 					<Button onClick={onSubmit}>Create Workout Exercise</Button>
+					<Button onClick={handleClose}>Cancel</Button>
 				</DialogActions>
 			</Dialog>
 		</div>
 	);
-}
+};
+
+export default AddWorkoutExercise;
