@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,17 +9,18 @@ import ProgramImagePlaceHolder from '../../assets/images/placeholders/program-pl
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import ItemOptions from '../../components/options/ItemOptions';
-import { Skeleton } from '@mui/material';
+import { removeProgram } from '../../actions/programActions';
+import EditProgram from '../../components/forms/edit/EditProgram';
 
-const ProgramsListItem = ({ program }) => {
+const ProgramsItem = ({ program, setPrograms }) => {
+	const [editModal, setEditModal] = useState(false);
 	const { id, name, description } = program;
-
 	return (
 		<Grid>
 			<Card sx={{ width: 345 }}>
 				<CardMedia
 					component='img'
-					height='150'
+					height='100%'
 					image={ProgramImagePlaceHolder}
 					alt='program'
 				/>
@@ -40,11 +41,21 @@ const ProgramsListItem = ({ program }) => {
 					>
 						Open
 					</Button>
-					<ItemOptions />
+					<ItemOptions
+						item={program}
+						setEditModal={setEditModal}
+						removeItem={removeProgram}
+						setItems={setPrograms}
+					/>
 				</CardActions>
 			</Card>
+			<EditProgram
+				program={program}
+				editModal={editModal}
+				setEditModal={setEditModal}
+			/>
 		</Grid>
 	);
 };
 
-export default ProgramsListItem;
+export default ProgramsItem;

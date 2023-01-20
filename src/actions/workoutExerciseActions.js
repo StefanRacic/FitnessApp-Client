@@ -5,12 +5,21 @@ export const getWorkoutExercisesByWorkoutId = (id) => {
 	return useFetch(`api/WorkoutExercises/GetAll?workoutId=${id}`);
 };
 
-export const createWorkoutExercise = (workoutExercise) => {
-	return fetch(baseUrl + 'api/WorkoutExercises/create', {
+export const createWorkoutExercise = async (workoutExercise) => {
+	return await fetch(baseUrl + 'api/workoutExercises/create', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(workoutExercise),
+	}).then((res) => res.json());
+};
+
+export const removeWorkoutExercise = async (id) => {
+	return await fetch(baseUrl + `api/workoutExercises/remove?id=${id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
 	});
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,17 +6,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useState } from 'react';
+import { createProgram } from '../../../actions/programActions';
 import AddButton from './AddButton';
-import ExercisesSelect from './ExercisesSelect';
-import { createWorkoutExercise } from '../../actions/workoutExerciseActions';
-import { useParams } from 'react-router-dom';
 
-export default function AddWorkoutExercise({ runGetWorkoutExercises }) {
+const AddProgram = ({ setPrograms }) => {
+	const [name, setName] = useState('');
+	const [description, setDescription] = useState('');
 	const [open, setOpen] = useState(false);
-	const [exercises, setExercises] = useState([]);
-	const [exerciseId, setExerciseId] = useState('');
-	const [sets, setSets] = useState('');
-	const params = useParams();
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -27,51 +24,57 @@ export default function AddWorkoutExercise({ runGetWorkoutExercises }) {
 	};
 
 	const onSubmit = async () => {
-		const newWorkoutExercise = {
-			exerciseId,
-			sets,
-			workoutId: params.id,
+		const newProgram = {
+			name,
+			description,
 		};
-
-		const res = await createWorkoutExercise(newWorkoutExercise);
-
-		setExerciseId('');
-		setSets('');
-
-		runGetWorkoutExercises();
+		const res = await createProgram(newProgram);
+		setPrograms((current) => [...current, res]);
+		setName('');
+		setDescription('');
 		setOpen(false);
 	};
 
 	return (
-		<div>
+		<>
 			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
-				<DialogTitle>Create Exercise</DialogTitle>
+				<DialogTitle>Create new program</DialogTitle>
 				<DialogContent>
 					<DialogContentText>Lorem ipsum dolar sit.</DialogContentText>
-					<ExercisesSelect
-						exercises={exercises}
-						setExerciseId={setExerciseId}
-					/>
 					<TextField
+						autoFocus
 						margin='dense'
-						id='sets'
-						name='sets'
-						value={sets}
-						label='Sets'
-						type='number'
+						name='name'
+						value={name}
+						id='name'
+						label='Program Name'
+						type='text'
 						fullWidth
 						variant='standard'
-						onChange={(e) => {
-							setSets(e.target.value);
-						}}
+						required
+						onChange={(e) => setName(e.target.value)}
+					/>
+					<TextField
+						name='description'
+						value={description}
+						margin='dense'
+						id='description'
+						label='Description'
+						type='text'
+						fullWidth
+						variant='standard'
+						required
+						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</DialogContent>
 				<DialogActions>
+					<Button onClick={onSubmit}>Create Program</Button>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={onSubmit}>Create Workout Exercise</Button>
 				</DialogActions>
 			</Dialog>
-		</div>
+		</>
 	);
-}
+};
+
+export default AddProgram;

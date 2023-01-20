@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './workoutForm.module.css';
+import styles from '../workoutForm.module.css';
 import { IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 

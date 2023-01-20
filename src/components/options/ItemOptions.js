@@ -1,20 +1,31 @@
-import * as React from 'react';
+import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-const options = ['Edit', 'Delete'];
-
 const ITEM_HEIGHT = 48;
 
-export default function ItemOptions() {
+const ItemOptions = ({ item, removeItem, setEditModal, setItems }) => {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
+
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
+
 	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
+	const handleRemove = () => {
+		removeItem(item.id);
+		setItems((current) => [...current].filter((i) => i.id !== item.id));
+		setAnchorEl(null);
+	};
+
+	const handleEdit = () => {
+		setEditModal(true);
 		setAnchorEl(null);
 	};
 
@@ -45,16 +56,11 @@ export default function ItemOptions() {
 					},
 				}}
 			>
-				{options.map((option) => (
-					<MenuItem
-						key={option}
-						selected={option === 'Pyxis'}
-						onClick={handleClose}
-					>
-						{option}
-					</MenuItem>
-				))}
+				<MenuItem onClick={handleEdit}>Edit</MenuItem>
+				<MenuItem onClick={handleRemove}>Remove</MenuItem>
 			</Menu>
 		</div>
 	);
-}
+};
+
+export default ItemOptions;

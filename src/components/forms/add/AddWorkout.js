@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -7,23 +7,26 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
-import { createProgram, getPrograms } from '../../actions/programActions';
+import { createWorkout } from '../../../actions/workoutActions';
+import { useParams } from 'react-router-dom';
 import AddButton from './AddButton';
 
-const AddProgram = () => {
+const AddWorkout = ({ setWorkouts }) => {
+	const params = useParams();
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [open, setOpen] = useState(false);
 
 	const onSubmit = async () => {
-		const newProgram = {
+		const newWorkout = {
 			name,
 			description,
+			programId: params.id,
 		};
-		createProgram(newProgram);
+		const res = await createWorkout(newWorkout);
+		setWorkouts((current) => [...current, res]);
 		setName('');
 		setDescription('');
-
 		setOpen(false);
 	};
 
@@ -36,10 +39,10 @@ const AddProgram = () => {
 	};
 
 	return (
-		<React.Fragment>
+		<div>
 			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
-				<DialogTitle>Create new program</DialogTitle>
+				<DialogTitle>Create new workout</DialogTitle>
 				<DialogContent>
 					<DialogContentText>Lorem ipsum dolar sit.</DialogContentText>
 					<TextField
@@ -48,33 +51,32 @@ const AddProgram = () => {
 						name='name'
 						value={name}
 						id='name'
-						label='Program Name'
+						label='Workout Name'
 						type='text'
 						fullWidth
 						variant='standard'
-						required
 						onChange={(e) => setName(e.target.value)}
 					/>
 					<TextField
-						name='description'
-						value={description}
 						margin='dense'
 						id='description'
+						name='description'
+						value={description}
 						label='Description'
 						type='text'
 						fullWidth
 						variant='standard'
-						required
-						onChange={(e) => setDescription(e.target.value)}
+						onChange={(e) => {
+							setDescription(e.target.value);
+						}}
 					/>
 				</DialogContent>
 				<DialogActions>
+					<Button onClick={onSubmit}>Create Workout</Button>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={onSubmit}>Create Program</Button>
 				</DialogActions>
 			</Dialog>
-		</React.Fragment>
+		</div>
 	);
 };
-
-export default AddProgram;
+export default AddWorkout;

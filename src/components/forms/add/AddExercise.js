@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,56 +6,45 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useState } from 'react';
-import { createWorkout } from '../../actions/workoutActions';
-import { useParams } from 'react-router-dom';
 import AddButton from './AddButton';
+import { createExercise } from '../../../actions/exerciseActions';
 
-export default function AddWorkout({ runGetWorkoutsByProgramId }) {
-	const params = useParams();
+const AddExercise = ({ setExercises }) => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = React.useState(false);
 
 	const onSubmit = async () => {
-		const newWorkout = {
+		const newExercise = {
 			name,
 			description,
-			programId: params.id,
 		};
-
-		const res = await createWorkout(newWorkout);
-
+		const res = await createExercise(newExercise);
+		setExercises((current) => [...current, res]);
 		setName('');
 		setDescription('');
-
-		runGetWorkoutsByProgramId();
-
 		setOpen(false);
 	};
-
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
-
 	const handleClose = () => {
 		setOpen(false);
 	};
 
 	return (
-		<div>
+		<>
 			<AddButton handleClickOpen={handleClickOpen} />
 			<Dialog open={open} onClose={handleClose} fullWidth={true}>
-				<DialogTitle>Create new workout</DialogTitle>
+				<DialogTitle>Create new exercise</DialogTitle>
 				<DialogContent>
 					<DialogContentText>Lorem ipsum dolar sit.</DialogContentText>
 					<TextField
 						autoFocus
 						margin='dense'
-						name='name'
-						value={name}
 						id='name'
-						label='Workout Name'
+						value={name}
+						label='Exercise Name'
 						type='text'
 						fullWidth
 						variant='standard'
@@ -64,22 +53,20 @@ export default function AddWorkout({ runGetWorkoutsByProgramId }) {
 					<TextField
 						margin='dense'
 						id='description'
-						name='description'
 						value={description}
 						label='Description'
 						type='text'
 						fullWidth
 						variant='standard'
-						onChange={(e) => {
-							setDescription(e.target.value);
-						}}
+						onChange={(e) => setDescription(e.target.value)}
 					/>
 				</DialogContent>
 				<DialogActions>
+					<Button onClick={onSubmit}>Create Exercise</Button>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={onSubmit}>Create Workout</Button>
 				</DialogActions>
 			</Dialog>
-		</div>
+		</>
 	);
-}
+};
+export default AddExercise;
