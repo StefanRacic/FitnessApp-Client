@@ -20,7 +20,7 @@ const ProgramsItem = ({ program, setPrograms }) => {
 			<Card sx={{ width: 345 }}>
 				<CardMedia
 					component='img'
-					height='150'
+					height='100%'
 					image={ProgramImagePlaceHolder}
 					alt='program'
 				/>

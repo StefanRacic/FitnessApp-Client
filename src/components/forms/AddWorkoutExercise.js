@@ -10,13 +10,14 @@ import AddButton from './AddButton';
 import ExercisesSelect from './ExercisesSelect';
 import { createWorkoutExercise } from '../../actions/workoutExerciseActions';
 import { useParams } from 'react-router-dom';
+import { getExercises } from '../../actions/exerciseActions';
 
-export default function AddWorkoutExercise({ runGetWorkoutExercises }) {
-	const [open, setOpen] = useState(false);
-	const [exercises, setExercises] = useState([]);
+export default function AddWorkoutExercise({ setWorkoutExercises }) {
+	const params = useParams();
+	const { data: exercises, loading, error } = getExercises();
 	const [exerciseId, setExerciseId] = useState('');
 	const [sets, setSets] = useState('');
-	const params = useParams();
+	const [open, setOpen] = useState(false);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -32,13 +33,10 @@ export default function AddWorkoutExercise({ runGetWorkoutExercises }) {
 			sets,
 			workoutId: params.id,
 		};
-
 		const res = await createWorkoutExercise(newWorkoutExercise);
-
+		setWorkoutExercises((current) => [...current, res]);
 		setExerciseId('');
 		setSets('');
-
-		runGetWorkoutExercises();
 		setOpen(false);
 	};
 
@@ -50,6 +48,8 @@ export default function AddWorkoutExercise({ runGetWorkoutExercises }) {
 				<DialogContent>
 					<DialogContentText>Lorem ipsum dolar sit.</DialogContentText>
 					<ExercisesSelect
+						loading={loading}
+						error={error}
 						exercises={exercises}
 						setExerciseId={setExerciseId}
 					/>

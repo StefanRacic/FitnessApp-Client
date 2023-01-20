@@ -5,6 +5,7 @@ import styles from '../Program/workouts.module.css';
 import { getWorkoutExercisesByWorkoutId } from '../../actions/workoutExerciseActions';
 import Spinner from '../../components/common/Spinner';
 import AddWorkoutExercise from '../../components/forms/AddWorkoutExercise';
+import { Typography } from '@mui/material';
 
 const WorkoutExercises = ({ workoutId }) => {
 	const {
@@ -21,16 +22,23 @@ const WorkoutExercises = ({ workoutId }) => {
 		<>
 			<div className={styles.wrapper}>
 				<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
-					{workoutExercises.map((workoutExercise) => {
-						return (
-							<Grid sm={3} key={workoutExercise.id}>
-								<WorkoutExerciseItem workoutExercise={workoutExercise} />
-							</Grid>
-						);
-					})}
+					{workoutExercises.length ? (
+						workoutExercises.map((workoutExercise) => {
+							return (
+								<Grid sm={3} key={workoutExercise.id}>
+									<WorkoutExerciseItem
+										workoutExercise={workoutExercise}
+										setWorkoutExercises={setWorkoutExercises}
+									/>
+								</Grid>
+							);
+						})
+					) : (
+						<Typography variant='body1'>No Workout Exercises...</Typography>
+					)}
 				</Grid>
 			</div>
-			<AddWorkoutExercise />
+			<AddWorkoutExercise setWorkoutExercises={setWorkoutExercises} />
 		</>
 	);
 };
