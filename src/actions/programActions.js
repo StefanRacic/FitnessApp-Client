@@ -3,11 +3,11 @@ const baseUrl = process.env.REACT_APP_BASE_URL;
 
 // Get Programs from server
 export const getPrograms = () => {
-	return useFetch('api/programs/getAll');
+	return useFetch('api/programs');
 };
 
 export const getProgram = (id) => {
-	return useFetch(`api/programs/get?id=${id}`);
+	return useFetch(`api/programs/${id}`);
 };
 
 export const createProgram = async (program) => {
@@ -21,7 +21,7 @@ export const createProgram = async (program) => {
 };
 
 export const removeProgram = async (id) => {
-	return await fetch(baseUrl + `api/programs/remove?id=${id}`, {
+	return await fetch(baseUrl + `api/programs/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',

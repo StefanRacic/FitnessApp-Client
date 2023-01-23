@@ -2,7 +2,7 @@ import useFetch from '../services/useFetch';
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 export const getExercises = () => {
-	return useFetch('api/exercises/getAll');
+	return useFetch('api/exercises/');
 };
 
 export const createExercise = async (exercise) => {
@@ -16,7 +16,7 @@ export const createExercise = async (exercise) => {
 };
 
 export const removeExercise = async (id) => {
-	return await fetch(baseUrl + `api/exercises/remove?id=${id}`, {
+	return await fetch(baseUrl + `api/exercises/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',

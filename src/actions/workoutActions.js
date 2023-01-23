@@ -2,11 +2,11 @@ import useFetch from '../services/useFetch';
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 export const getWorkout = (id) => {
-	return useFetch(`api/workouts/get?id=${id}`);
+	return useFetch(`api/workouts/${id}`);
 };
 
 export const getWorkoutsByProgramId = (id) => {
-	return useFetch(`api/Workouts/GetAllByProgramId?programId=${id}`);
+	return useFetch(`api/Workouts/GetAllByProgramId/${id}`);
 };
 
 export const createWorkout = async (workout) => {
@@ -20,7 +20,7 @@ export const createWorkout = async (workout) => {
 };
 
 export const removeWorkout = async (id) => {
-	return await fetch(baseUrl + `api/workouts/remove?id=${id}`, {
+	return await fetch(baseUrl + `api/workouts/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
