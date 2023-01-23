@@ -10,7 +10,7 @@ export const getWorkoutsByProgramId = (id) => {
 };
 
 export const createWorkout = async (workout) => {
-	return await fetch(baseUrl + 'api/workouts/create', {
+	return await fetch(baseUrl + 'api/workouts/', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

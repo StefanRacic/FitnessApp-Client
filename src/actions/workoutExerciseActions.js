@@ -6,7 +6,7 @@ export const getWorkoutExercisesByWorkoutId = (id) => {
 };
 
 export const createWorkoutExercise = async (workoutExercise) => {
-	return await fetch(baseUrl + 'api/workoutExercises/create', {
+	return await fetch(baseUrl + 'api/workoutExercises/', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

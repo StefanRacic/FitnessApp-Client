@@ -6,7 +6,7 @@ export const getExercises = () => {
 };
 
 export const createExercise = async (exercise) => {
-	return await fetch(baseUrl + 'api/exercises/create', {
+	return await fetch(baseUrl + 'api/exercises/', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

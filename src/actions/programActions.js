@@ -11,7 +11,7 @@ export const getProgram = (id) => {
 };
 
 export const createProgram = async (program) => {
-	return await fetch(baseUrl + 'api/programs/create', {
+	return await fetch(baseUrl + 'api/programs/', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
