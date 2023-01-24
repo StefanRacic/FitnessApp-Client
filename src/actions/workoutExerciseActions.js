@@ -2,7 +2,7 @@ import useFetch from '../services/useFetch';
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 export const getWorkoutExercisesByWorkoutId = (id) => {
-	return useFetch(`api/WorkoutExercises/GetAllByWorkoutId/${id}`);
+	return useFetch(`api/workout/${id}/workoutExercises`);
 };
 
 export const createWorkoutExercise = async (workoutExercise) => {

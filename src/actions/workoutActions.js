@@ -6,7 +6,7 @@ export const getWorkout = (id) => {
 };
 
 export const getWorkoutsByProgramId = (id) => {
-	return useFetch(`api/Workouts/GetAllByProgramId/${id}`);
+	return useFetch(`api/programs/${id}/workouts`);
 };
 
 export const createWorkout = async (workout) => {
