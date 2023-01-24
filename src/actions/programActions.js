@@ -28,3 +28,13 @@ export const removeProgram = async (id) => {
 		},
 	});
 };
+
+export const updateProgram = async (id, model) => {
+	return await fetch(baseUrl + `api/programs/${id}`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(model),
+	}).then((res) => res.json());
+};

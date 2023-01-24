@@ -53,6 +53,7 @@ const ProgramsItem = ({ program, setPrograms }) => {
 				program={program}
 				editModal={editModal}
 				setEditModal={setEditModal}
+				setPrograms={setPrograms}
 			/>
 		</Grid>
 	);

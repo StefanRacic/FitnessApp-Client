@@ -8,8 +8,9 @@ import {
 	DialogContentText,
 	DialogTitle,
 } from '@mui/material';
+import { updateProgram } from '../../../actions/programActions';
 
-const EditProgram = ({ program, editModal, setEditModal }) => {
+const EditProgram = ({ program, editModal, setEditModal, setPrograms }) => {
 	const [name, setName] = useState(program.name);
 	const [description, setDescription] = useState(program.description);
 
@@ -18,6 +19,20 @@ const EditProgram = ({ program, editModal, setEditModal }) => {
 	};
 
 	const handleClose = () => {
+		setEditModal(false);
+	};
+
+	const onSubmit = async () => {
+		const updatedProgram = {
+			name,
+			description,
+		};
+		const res = await updateProgram(program.id, updatedProgram);
+		setPrograms((curr) =>
+			curr.map((item) => (item.id === program.id ? res : item))
+		);
+		setName('');
+		setDescription('');
 		setEditModal(false);
 	};
 
@@ -56,7 +71,7 @@ const EditProgram = ({ program, editModal, setEditModal }) => {
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={handleClose}>Cancel</Button>
-					<Button onClick={handleClose}>Save Changes</Button>
+					<Button onClick={onSubmit}>Save Changes</Button>
 				</DialogActions>
 			</Dialog>
 		</div>
