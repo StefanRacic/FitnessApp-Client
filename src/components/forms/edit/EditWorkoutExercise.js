@@ -18,10 +18,6 @@ const EditWorkoutExercise = ({
 }) => {
 	const [sets, setSets] = useState(workoutExercise.sets);
 
-	const handleOpen = () => {
-		setEditModal(true);
-	};
-
 	const handleClose = () => {
 		setEditModal(false);
 	};
@@ -64,8 +60,8 @@ const EditWorkoutExercise = ({
 					/>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose}>Cancel</Button>
 					<Button onClick={onSubmit}>Save Changes</Button>
+					<Button onClick={handleClose}>Cancel</Button>
 				</DialogActions>
 			</Dialog>
 		</div>

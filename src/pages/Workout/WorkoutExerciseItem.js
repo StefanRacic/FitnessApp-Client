@@ -36,7 +36,7 @@ export default function WorkoutExerciseItem({
 				editModal={editModal}
 				setEditModal={setEditModal}
 				setWorkoutExercises={setWorkoutExercises}
-			></EditWorkoutExercise>
+			/>
 		</>
 	);
 }

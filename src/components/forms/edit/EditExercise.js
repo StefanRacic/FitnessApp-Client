@@ -8,40 +8,40 @@ import {
 	DialogContentText,
 	DialogTitle,
 } from '@mui/material';
-import { updateWorkout } from '../../../actions/workoutActions';
+import { updateExercise } from '../../../actions/exerciseActions';
 
-const EditWorkout = ({ workout, editModal, setEditModal, setWorkouts }) => {
-	const [name, setName] = useState(workout.name);
-	const [description, setDescription] = useState(workout.description);
+const EditExercise = ({ exercise, editModal, setEditModal, setExercises }) => {
+	const [name, setName] = useState(exercise.name);
+	const [description, setDescription] = useState(exercise.description);
 
 	const handleClose = () => {
 		setEditModal(false);
 	};
 
 	const onSubmit = async () => {
-		const updatedWorkout = {
+		const updatedExercise = {
 			name,
 			description,
 		};
 
-		const res = await updateWorkout(workout.id, updatedWorkout);
-
-		setWorkouts((curr) =>
-			curr.map((item) => (item.id === workout.id ? res : item))
+		const res = await updateExercise(exercise.id, updatedExercise);
+		setExercises((curr) =>
+			curr.map((item) => (item.id === exercise.id ? res : item))
 		);
 
 		setName('');
 		setDescription('');
+
 		setEditModal(false);
 	};
 
 	return (
 		<div>
 			<Dialog open={editModal} onClose={handleClose}>
-				<DialogTitle>Edit Program</DialogTitle>
+				<DialogTitle>Edit Exercise</DialogTitle>
 				<DialogContent>
 					<DialogContentText>
-						Edit Name and Description for current program.
+						Edit Name and Description for current exercise.
 					</DialogContentText>
 					<TextField
 						autoFocus
@@ -77,4 +77,4 @@ const EditWorkout = ({ workout, editModal, setEditModal, setWorkouts }) => {
 	);
 };
 
-export default EditWorkout;
+export default EditExercise;

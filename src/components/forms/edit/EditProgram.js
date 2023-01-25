@@ -14,10 +14,6 @@ const EditProgram = ({ program, editModal, setEditModal, setPrograms }) => {
 	const [name, setName] = useState(program.name);
 	const [description, setDescription] = useState(program.description);
 
-	const handleOpen = () => {
-		setEditModal(true);
-	};
-
 	const handleClose = () => {
 		setEditModal(false);
 	};
@@ -70,8 +66,8 @@ const EditProgram = ({ program, editModal, setEditModal, setPrograms }) => {
 					/>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose}>Cancel</Button>
 					<Button onClick={onSubmit}>Save Changes</Button>
+					<Button onClick={handleClose}>Cancel</Button>
 				</DialogActions>
 			</Dialog>
 		</div>

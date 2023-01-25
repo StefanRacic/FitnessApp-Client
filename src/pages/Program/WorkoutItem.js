@@ -46,7 +46,7 @@ const WorkoutItem = ({ workout, setWorkouts }) => {
 				editModal={editModal}
 				setEditModal={setEditModal}
 				setWorkouts={setWorkouts}
-			></EditWorkout>
+			/>
 		</>
 	);
 };
