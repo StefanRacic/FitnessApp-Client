@@ -23,3 +23,13 @@ export const removeWorkoutExercise = async (id) => {
 		},
 	});
 };
+
+export const updateWorkoutExercise = async (id, model) => {
+	return await fetch(baseUrl + `api/workoutExercises/${id}`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(model),
+	}).then((res) => res.json());
+};
