@@ -29,8 +29,8 @@ export const removeProgram = async (id) => {
 	});
 };
 
-export const updateProgram = async (id, model) => {
-	return await fetch(baseUrl + `api/programs/${id}`, {
+export const updateProgram = async (model) => {
+	return await fetch(baseUrl + `api/programs/`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',

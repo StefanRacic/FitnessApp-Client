@@ -20,15 +20,18 @@ const EditProgram = ({ program, editModal, setEditModal, setPrograms }) => {
 
 	const onSubmit = async () => {
 		const updatedProgram = {
+			id: program.id,
 			name,
 			description,
 		};
-		const res = await updateProgram(program.id, updatedProgram);
+
+		const res = await updateProgram(updatedProgram);
 		setPrograms((curr) =>
-			curr.map((item) => (item.id === program.id ? res : item))
+			curr.map((item) => (item.id === updatedProgram.id ? res : item))
 		);
-		setName('');
-		setDescription('');
+
+		setName(name);
+		setDescription(description);
 		setEditModal(false);
 	};
 
