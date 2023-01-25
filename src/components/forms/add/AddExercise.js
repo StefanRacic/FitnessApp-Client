@@ -15,20 +15,27 @@ const AddExercise = ({ setExercises }) => {
 	const [open, setOpen] = React.useState(false);
 
 	const onSubmit = async () => {
-		const newExercise = {
-			name,
-			description,
-		};
-		const res = await createExercise(newExercise);
-		setExercises((current) => [...current, res]);
-		setName('');
-		setDescription('');
-		setOpen(false);
+		if (name !== '' || description !== '') {
+			handleClose();
+		} else {
+			const newExercise = {
+				name,
+				description,
+			};
+			const res = await createExercise(newExercise);
+			setExercises((current) => [...current, res]);
+			setName('');
+			setDescription('');
+			setOpen(false);
+		}
 	};
+
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
 	const handleClose = () => {
+		setName('');
+		setDescription('');
 		setOpen(false);
 	};
 

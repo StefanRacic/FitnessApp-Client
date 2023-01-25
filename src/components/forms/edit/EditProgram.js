@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	TextField,
 	Button,
@@ -16,23 +16,29 @@ const EditProgram = ({ program, editModal, setEditModal, setPrograms }) => {
 
 	const handleClose = () => {
 		setEditModal(false);
+		setName(program.name);
+		setDescription(program.description);
 	};
 
 	const onSubmit = async () => {
-		const updatedProgram = {
-			id: program.id,
-			name,
-			description,
-		};
+		if (name !== '' || description !== '') {
+			handleClose();
+		} else {
+			const updatedProgram = {
+				id: program.id,
+				name,
+				description,
+			};
 
-		const res = await updateProgram(updatedProgram);
-		setPrograms((curr) =>
-			curr.map((item) => (item.id === updatedProgram.id ? res : item))
-		);
+			const res = await updateProgram(updatedProgram);
+			setPrograms((curr) =>
+				curr.map((item) => (item.id === updatedProgram.id ? res : item))
+			);
 
-		setName(name);
-		setDescription(description);
-		setEditModal(false);
+			setName(name);
+			setDescription(description);
+			setEditModal(false);
+		}
 	};
 
 	return (

@@ -24,17 +24,20 @@ const AddProgram = ({ setPrograms }) => {
 	};
 
 	const onSubmit = async () => {
-		const newProgram = {
-			name,
-			description,
-		};
-		const res = await createProgram(newProgram);
-		setPrograms((current) => [...current, res]);
-		setName('');
-		setDescription('');
-		setOpen(false);
+		if (name !== '' || description !== '') {
+			handleClose();
+		} else {
+			const newProgram = {
+				name,
+				description,
+			};
+			const res = await createProgram(newProgram);
+			setPrograms((current) => [...current, res]);
+			setName('');
+			setDescription('');
+			setOpen(false);
+		}
 	};
-
 	return (
 		<>
 			<AddButton handleClickOpen={handleClickOpen} />

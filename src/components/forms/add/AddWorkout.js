@@ -18,16 +18,20 @@ const AddWorkout = ({ setWorkouts }) => {
 	const [open, setOpen] = useState(false);
 
 	const onSubmit = async () => {
-		const newWorkout = {
-			name,
-			description,
-			programId: params.id,
-		};
-		const res = await createWorkout(newWorkout);
-		setWorkouts((current) => [...current, res]);
-		setName('');
-		setDescription('');
-		setOpen(false);
+		if (name !== '' || description !== '') {
+			handleClose();
+		} else {
+			const newWorkout = {
+				name,
+				description,
+				programId: params.id,
+			};
+			const res = await createWorkout(newWorkout);
+			setWorkouts((current) => [...current, res]);
+			setName('');
+			setDescription('');
+			setOpen(false);
+		}
 	};
 
 	const handleClickOpen = () => {
@@ -35,6 +39,8 @@ const AddWorkout = ({ setWorkouts }) => {
 	};
 
 	const handleClose = () => {
+		setName('');
+		setDescription('');
 		setOpen(false);
 	};
 

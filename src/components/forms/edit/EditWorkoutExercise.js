@@ -20,24 +20,27 @@ const EditWorkoutExercise = ({
 
 	const handleClose = () => {
 		setEditModal(false);
+		setSets(workoutExercise.sets);
 	};
 
 	const onSubmit = async () => {
-		const updatedWorkoutExercise = {
-			sets,
-		};
+		if (sets <= 0) {
+			handleClose();
+		} else {
+			const updatedWorkoutExercise = {
+				id: workoutExercise.id,
+				sets,
+			};
 
-		const res = await updateWorkoutExercise(
-			workoutExercise.id,
-			updatedWorkoutExercise
-		);
+			const res = await updateWorkoutExercise(updatedWorkoutExercise);
 
-		setWorkoutExercises((curr) =>
-			curr.map((item) => (item.id === workoutExercise.id ? res : item))
-		);
+			setWorkoutExercises((curr) =>
+				curr.map((item) => (item.id === workoutExercise.id ? res : item))
+			);
 
-		setSets(null);
-		setEditModal(false);
+			setSets(sets);
+			setEditModal(false);
+		}
 	};
 
 	return (

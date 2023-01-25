@@ -25,20 +25,25 @@ const AddWorkoutExercise = ({ setWorkoutExercises }) => {
 	};
 
 	const handleClose = () => {
+		setSets('');
 		setOpen(false);
 	};
 
 	const onSubmit = async () => {
-		const newWorkoutExercise = {
-			exerciseId,
-			sets,
-			workoutId: params.id,
-		};
-		const res = await createWorkoutExercise(newWorkoutExercise);
-		setWorkoutExercises((current) => [...current, res]);
-		setExerciseId('');
-		setSets('');
-		setOpen(false);
+		if (sets <= 0) {
+			handleClose();
+		} else {
+			const newWorkoutExercise = {
+				exerciseId,
+				sets,
+				workoutId: params.id,
+			};
+			const res = await createWorkoutExercise(newWorkoutExercise);
+			setWorkoutExercises((current) => [...current, res]);
+			setExerciseId('');
+			setSets('');
+			setOpen(false);
+		}
 	};
 
 	if (error) throw error;

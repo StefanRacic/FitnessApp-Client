@@ -16,23 +16,30 @@ const EditWorkout = ({ workout, editModal, setEditModal, setWorkouts }) => {
 
 	const handleClose = () => {
 		setEditModal(false);
+		setName(workout.name);
+		setDescription(workout.description);
 	};
 
 	const onSubmit = async () => {
-		const updatedWorkout = {
-			name,
-			description,
-		};
+		if (name !== '' || description !== '') {
+			handleClose();
+		} else {
+			const updatedWorkout = {
+				id: workout.id,
+				name,
+				description,
+			};
 
-		const res = await updateWorkout(workout.id, updatedWorkout);
+			const res = await updateWorkout(updatedWorkout);
 
-		setWorkouts((curr) =>
-			curr.map((item) => (item.id === workout.id ? res : item))
-		);
+			setWorkouts((curr) =>
+				curr.map((item) => (item.id === workout.id ? res : item))
+			);
 
-		setName('');
-		setDescription('');
-		setEditModal(false);
+			setName(name);
+			setDescription(description);
+			setEditModal(false);
+		}
 	};
 
 	return (

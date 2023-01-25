@@ -15,10 +15,7 @@ const WorkoutItem = ({ workout, setWorkouts }) => {
 		<>
 			<Card sx={{ minWidth: 275 }}>
 				<CardContent>
-					<Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
-						Workout ID: {workout.id}
-					</Typography>
-					<Typography variant='h5' component='div'>
+					<Typography variant='body1' component='div'>
 						{workout.name}
 					</Typography>
 					<Typography variant='body2'>{workout.description}</Typography>

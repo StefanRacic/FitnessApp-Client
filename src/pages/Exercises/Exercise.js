@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
 import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import ExerciseImagePlaceHolder from '../../assets/images/placeholders/exercisePlacehodler.gif';
 import ItemOptions from '../../components/options/ItemOptions';
 import { removeExercise } from '../../actions/exerciseActions';
 import EditExercise from '../../components/forms/edit/EditExercise';
+import styles from './exercises.module.css';
 
 const Exercise = ({ exercise, setExercises }) => {
 	const [editModal, setEditModal] = useState(false);
 	return (
 		<>
 			<Card sx={{ minWidth: 275 }}>
-				<CardMedia
-					component='img'
-					height='100%'
-					image={ExerciseImagePlaceHolder}
-					alt='program'
-				/>
 				<CardContent
 					sx={{
 						display: 'flex',
@@ -28,18 +20,8 @@ const Exercise = ({ exercise, setExercises }) => {
 					}}
 				>
 					<div>
-						<Typography
-							sx={{ fontSize: 14 }}
-							color='text.secondary'
-							gutterBottom
-						>
-							Exercise ID: {exercise.id}
-						</Typography>
-						<Typography variant='h5' component='div'>
+						<Typography variant='body2' component='h1'>
 							{exercise.name}
-						</Typography>
-						<Typography sx={{ mb: 1.5 }} color='text.secondary'>
-							adjective
 						</Typography>
 						<Typography variant='body2'>{exercise.description}</Typography>
 					</div>

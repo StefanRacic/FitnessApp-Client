@@ -18,14 +18,8 @@ const ProgramsItem = ({ program, setPrograms }) => {
 	return (
 		<Grid>
 			<Card sx={{ width: 345 }}>
-				<CardMedia
-					component='img'
-					height='100%'
-					image={ProgramImagePlaceHolder}
-					alt='program'
-				/>
 				<CardContent>
-					<Typography gutterBottom variant='h5' component='div'>
+					<Typography gutterBottom variant='body1' component='div'>
 						{name}
 					</Typography>
 					<Typography variant='body2' color='text.secondary'>

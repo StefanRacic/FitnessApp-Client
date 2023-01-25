@@ -28,8 +28,8 @@ export const removeWorkout = async (id) => {
 	});
 };
 
-export const updateWorkout = async (id, model) => {
-	return await fetch(baseUrl + `api/workouts/${id}`, {
+export const updateWorkout = async (model) => {
+	return await fetch(baseUrl + `api/workouts`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
