@@ -14,12 +14,18 @@ import MenuItem from '@mui/material/MenuItem';
 import FitbitIcon from '@mui/icons-material/Fitbit';
 import { Link } from 'react-router-dom';
 
-const pages = ['programs', 'exercises'];
+const pages = [
+	{ alias: 'programs', label: 'Program' },
+	{ alias: 'exercises', label: 'Exercises' },
+	{ alias: 'workoutLogger', label: 'Workout Logger' },
+];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+	console.log(pages);
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
@@ -89,8 +95,12 @@ function Navbar() {
 							}}
 						>
 							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseNavMenu} href={page}>
-									<Typography textAlign='center'>{page}</Typography>
+								<MenuItem
+									key={page.alias}
+									onClick={handleCloseNavMenu}
+									href={page.alias}
+								>
+									<Typography textAlign='center'>{page.label}</Typography>
 								</MenuItem>
 							))}
 						</Menu>
@@ -117,13 +127,13 @@ function Navbar() {
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map((page) => (
 							<Button
-								key={page}
+								key={page.alias}
 								onClick={handleCloseNavMenu}
 								sx={{ my: 2, color: 'white', display: 'block' }}
 								component={Link}
-								to={page}
+								to={page.alias}
 							>
-								{page}
+								{page.label}
 							</Button>
 						))}
 					</Box>

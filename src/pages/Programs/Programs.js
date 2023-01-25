@@ -1,6 +1,6 @@
 import React from 'react';
 import AddProgram from '../../components/forms/add/AddProgram';
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import ProgramsItem from './ProgramsItem';
 import Spinner from '../../components/common/Spinner';
@@ -20,15 +20,21 @@ const Programs = () => {
 	return (
 		<Container sx={{ p: 20 }}>
 			<Grid container spacing={{ xs: 3, sm: 3 }} justifyContent='center'>
-				{programs.map((program) => {
-					return (
-						<ProgramsItem
-							key={program.id}
-							program={program}
-							setPrograms={setPrograms}
-						/>
-					);
-				})}
+				{programs.length ? (
+					programs.map((program) => {
+						return (
+							<ProgramsItem
+								key={program.id}
+								program={program}
+								setPrograms={setPrograms}
+							/>
+						);
+					})
+				) : (
+					<Typography variant='h4' component='h2'>
+						No programs...
+					</Typography>
+				)}
 			</Grid>
 			<AddProgram setPrograms={setPrograms} />
 		</Container>

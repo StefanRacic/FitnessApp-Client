@@ -24,7 +24,7 @@ const AddProgram = ({ setPrograms }) => {
 	};
 
 	const onSubmit = async () => {
-		if (name !== '' || description !== '') {
+		if (name === '' || description === '') {
 			handleClose();
 		} else {
 			const newProgram = {

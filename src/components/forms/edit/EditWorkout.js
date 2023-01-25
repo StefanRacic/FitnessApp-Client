@@ -21,7 +21,7 @@ const EditWorkout = ({ workout, editModal, setEditModal, setWorkouts }) => {
 	};
 
 	const onSubmit = async () => {
-		if (name !== '' || description !== '') {
+		if (name === '' || description === '') {
 			handleClose();
 		} else {
 			const updatedWorkout = {

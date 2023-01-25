@@ -7,6 +7,7 @@ import Programs from './pages/Programs/Programs';
 import Exercises from './pages/Exercises/Exercises';
 import Program from './pages/Program/Program';
 import Workout from './pages/Workout/Workout';
+import WorkoutLogger from './pages/WorkoutLogger/WorkoutLogger';
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 						<Route path='/exercises' element={<Exercises />} />
 						<Route path='/program/:id' element={<Program />} />
 						<Route path='/workout/:id' element={<Workout />} />
+						<Route path='/workoutLogger' element={<WorkoutLogger />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

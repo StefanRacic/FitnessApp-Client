@@ -21,7 +21,7 @@ const EditProgram = ({ program, editModal, setEditModal, setPrograms }) => {
 	};
 
 	const onSubmit = async () => {
-		if (name !== '' || description !== '') {
+		if (name === '' || description === '') {
 			handleClose();
 		} else {
 			const updatedProgram = {
